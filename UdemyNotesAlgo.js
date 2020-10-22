@@ -557,3 +557,30 @@ function isSubsequence(str1, str2) {
     return maxSum;
   }
 
+  function minSubArrayLen(arr, num){
+    let minLength = Infinity;
+    let start = 0;
+    let end = 0;
+    let total = 0;
+    while (start < arr.length){
+          
+    if(total < num && end < arr.length) {
+        total = total + arr[end]
+        end++
+    } else if (total >= num){
+        minLength = Math.min(minLength, end - start)
+        total = total - arr[start]
+        start++
+    } else {
+        break
+    }
+    }
+  
+ 
+    
+    
+    return minLength === Infinity ? 0: minLength;
+    
+}
+
+
