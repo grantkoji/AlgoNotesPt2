@@ -276,6 +276,7 @@ function maxSubarraySum(arr, num) {
     if (arr.length < num) return null;
     for (let i = 0; i < num; i++) {
         maxSum += arr[i]
+        tempSum += arr[i]
     }
     for (let i = num; i < arr.length; i++) {
         tempSum = tempSum - arr[i-num] + arr[i];
@@ -536,5 +537,23 @@ function isSubsequence(str1, str2) {
         
    
     
+  }
+
+
+  function maxSubarraySum(arr, num){
+    // add whatever parameters you deem necessary - good luck!
+    let maxSum = 0;
+    let tempSum = 0;
+    if (arr.length < num) return null;
+    for (let i = 0; i < num; i++) {
+        maxSum += arr[i]
+        tempSum += arr[i]
+    }
+    for (let j=num; j< arr.length; j++){
+      tempSum = tempSum - arr[j-num] + arr[j]
+      maxSum = Math.max(maxSum, tempSum)
+        
+    }
+    return maxSum;
   }
 
