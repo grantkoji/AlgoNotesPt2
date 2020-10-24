@@ -602,6 +602,15 @@ function findLongestSubstring(str) {
   return longest;
 }
 
+Take an array and look at each Element,
+One element at a time, eliminating everything else after it
+
+Is it odd? 
+Taking one problem
+Doing it over and over on a smaller piece until you getComputedStyle
+to the ending, called the base case  
+2 essential components of recursive function 
+
 function countDown(num){
     if(num<=0){
         console.log("All done!")
@@ -611,3 +620,4 @@ function countDown(num){
     num--
     countDown(num)
 }
+
