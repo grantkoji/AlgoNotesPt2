@@ -621,3 +621,9 @@ function countDown(num){
     countDown(num)
 }
 
+
+The call stack
+It's a stack data structure'
+Any time you remove from whatever's on top
+Any time a function is invoked it is placed pushed on the top of the stack'
+klj
