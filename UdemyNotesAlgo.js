@@ -627,3 +627,13 @@ It's a stack data structure'
 Any time you remove from whatever's on top
 Any time a function is invoked it is placed pushed on the top of the stack'
 klj
+
+function takeShower(){
+    return "Showering!"
+}
+
+function eatBreakfast(){
+    let meal = cookFood()
+    return `Eating ${meal}`
+}
+
