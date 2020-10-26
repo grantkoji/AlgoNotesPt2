@@ -637,3 +637,87 @@ function eatBreakfast(){
     return `Eating ${meal}`
 }
 
+You have 5 seconds and that's it
+email person re job '
+8 people
+1 blog pulse
+keep committing
+Fill out sheet 
+
+Know you will never feel like doing something
+Start walking start moving 
+5 seconds 
+If you start walking if you want to talk to SVGComponentTransferFunctionElement
+Send an email to someone 
+
+function same(array1, array2){
+    //If the lengths of the two arrays are different, they cannot hold the same values
+    if(array1.length !== array2.length){
+        return false;
+    }
+    //Iterate through array1
+    for(let i=0; i< array1.length; i++){
+        //use .indexOf to find the index in array2 whose value matches array1[i]
+        let correctIndex = array2.indexOf(array1[i])
+        if (correctIndex === -1){
+         //if correctIndex is -1, then the array1[i] value is not inside array2
+            return false;
+        } else { 
+        //if correctIndex is inside array2, use splice to remove that value from array2
+            array2.splice(correctIndex,1)
+        }
+    }
+    //We already established that array1 and array2 are the same length
+    //If we go through each element in array1 and find a matching index in array2,
+    //while removing those matching elements in array2, the two arrays are the same.
+    return true;
+}
+
+
+function same(array1, array2){
+    //If the lengths of the two arrays are different, they cannot hold the same values
+    if(array1.length !== array2.length){
+        return false;
+    }
+    // Create object literals to store the number of times an element appears in each array
+    let frequencyCounter1 = {}
+    let frequencyCounter2 = {}
+    //Iterate through the first array
+    for (let i=0; i < array1.length; i++) {
+        let val = array1[i]
+        if (frequencyCounter1[val]) {
+            //If the element is repeated, add its frequency to the counter object
+            frequencyCounter1[val] = frequencyCounter1[val] + 1
+        } else {
+            //If the element is found for the first time, start its count at 1
+            frequencyCounter1[val] = 1
+        }
+    }
+    //Iterate through the second array
+    for (let i=0; i < array2.length; i++) {
+        let val = array2[i]
+        //A cleaner way to check if the element is repeated, add its frequency to the 
+        //counter object. If the element is found for the first time, start its count at 1
+        frequencyCounter2[val] = (frequencyCounter2[val] || 0) + 1
+    }
+    for (let key in frequencyCounter1){
+        if(!(key in frequencyCounter2)){
+            //If the key in frequencyCounter1 does not appear as a key in frequencyCounter2
+            return false
+        }
+        if(frequencyCounter1[key] !== frequencyCounter2[key]) {
+            //If the frequencies of the key (element value in original array) in both counters does not match
+            return false
+        }
+
+    }
+    //We already established that array1 and array2 are the same length
+    //If we go through each key of the elements in frequencyCounter1 and establish that same key
+    //exists in frequencyCounter2 with their frequencies being the same, the two arrays are holding the same
+    //values the same number of times
+    return true;
+}
+
+
+
+
