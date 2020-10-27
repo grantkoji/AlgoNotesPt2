@@ -691,8 +691,9 @@ function same(array1, array2){
         } else {
             //If the element is found for the first time, start its count at 1
             frequencyCounter1[val] = 1
-        }
     }
+        }
+        }
     //Iterate through the second array
     for (let i=0; i < array2.length; i++) {
         let val = array2[i]
@@ -719,5 +720,33 @@ function same(array1, array2){
 }
 
 
+What is recursion? 
+A function that calls itself 
+Again and again on a smaller list
+
+Recursion occurs all over the place 
+Can have a function calling itself over and over inside a nested 
+JSON.parse and JSON.stringify are recursion 
+document.getElementById and DOM traversal algorithms
+Object traversal 
+We will see it with more complex data structures 
+
+It's sometimes a cleaner alternative to iteration '
+
+To write effective recursive code that doesnt break
+Functions are waiting for other functions to occur 
+If you have a function called first then have a second function 
+Theres a thing called a call stack
+A data structure called a stack 
+When a function is invoked, it is placed on the top of the call stack 
+When a function ends the compiler will remove the function from the stack 
+
+You put something on top, when you remove something you remove from the top 
+The removal is a pop 
+
+random item from array 
+return arrayName[Math.floor(Math.random()*arrayName.length)]
+
+Recursive functions keep pushing a new function onto the call stack obver and over again
 
 
