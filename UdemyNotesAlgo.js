@@ -814,4 +814,18 @@ function factorial(num){
 if(num === 1) return 1; is base case 
 return num * factorial(num-1); is recursive call
 
+Ch 47.
+What goes wrong with recursive solutions:
+1) no base case
+2) returning the wrong thing or forgetting to return something in the first case
+
+if(num === 1) console.log(1); is base case...result would be maximum call stack size exceeded
+Importance of returning is what recursion is built on
+
+Waiting and primed on a chain. 
+Add and multiply someting to keep going until we get to the original one called facotrial 2
+
+Stack overflow: More than maximum number of calls have been exceeded
+See Stack overflow message means recursion is not stopping 
+
 kldja;jfd
