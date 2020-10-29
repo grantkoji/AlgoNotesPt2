@@ -790,5 +790,28 @@ Going to keep returning num: 3 + sumRange(2)
     num: 3 + 2 + 1 
 
 
-kldja;jfd
 
+
+Ch. 45: Writing factorial iteratively
+4 * 3 * 2 * 1
+
+//Doing factorial without recursion
+function factorial(num){
+    let total = 1; 
+    for (let i=num; i > 0; i--){
+        total *= i
+    }
+    return total
+}
+
+Ch. 46: Writing factorial recursively
+
+//Doing factorial with recursion
+function factorial(num){
+    if(num === 1) return 1;
+    return num * factorial(num-1)
+}
+if(num === 1) return 1; is base case 
+return num * factorial(num-1); is recursive call
+
+kldja;jfd
