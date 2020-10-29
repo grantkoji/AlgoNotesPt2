@@ -1159,4 +1159,29 @@ function collectStrings(obj) {
 }
 
 
+Ch 57: Linear Search
+
+Look at every element in order and see if it is what we want
+Keep going until we find it or weree at the end
+
+usernames.indexOf('tom')
+usernames.includes('tom')
+function linearSearch(arr, value){
+    // add whatever parameters you deem necessary - good luck!
+    for (let i=0; i<arr.length;i++){
+        if (arr[i] === value){
+            return i;
+        }
+    }
+    return -1
+  }
+
+  Linear search Big O
+  Best case O(1)
+  Average case O(n)
+  Worst case O(n)
+
+  
+  
+
 ljdfjakldja;jf
