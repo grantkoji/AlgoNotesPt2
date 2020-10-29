@@ -749,4 +749,46 @@ return arrayName[Math.floor(Math.random()*arrayName.length)]
 
 Recursive functions keep pushing a new function onto the call stack obver and over again
 
+2 things in any recursive function 
+1) Base case: the condition when the recursion ends
+This is the most important concept to understand
+
+2) Different input. the recursive call that I'm calling '
+over and over again with a different piece of data
+What I would want to do is change the list and chop off one number 
+at the beginning and try to do the same thing until
+We hit an empty list
+
+Our first recursive function
+
+Countdown
+
+function countDown(num) {
+    if(num <= 0){
+        console.log('all done');
+        return;
+    }
+    console.log(num)
+    num--;
+    countDown(num)
+}
+Javascript uses the cll stack to manage function invocagtions
+
+Ch. 44: Our Second Recursive function 
+Base case almost always involves conditional and it returns something
+There is an endpoint . 
+Base case is if(num===1)
+recursive call is return num + sumRange(num-1)
+
+function sumRange(num){
+    if(num === 1) return 1
+    return num + sumRange(num-1)
+}
+This function is returning over and over again.
+Going to keep returning num: 3 + sumRange(2)
+    num: 3 + 2 + sumRange(1)
+    num: 3 + 2 + 1 
+
+
+kldja;jfd
 
