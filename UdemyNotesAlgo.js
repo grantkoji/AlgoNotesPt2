@@ -828,4 +828,149 @@ Add and multiply someting to keep going until we get to the original one called 
 Stack overflow: More than maximum number of calls have been exceeded
 See Stack overflow message means recursion is not stopping 
 
-kldja;jfd
+Ch 48: Helper Method recursion
+
+Helper Method recursion is just a pattern where we have an outer function that 
+is not recursive that calls an inner function which is recursive
+ 
+
+function outer(input){
+    var outerScopedVariable = []
+    function helper(helperInput){
+        //modify the outerScopedVariable
+        helper(helperInput--)
+        helper(input)
+
+        return outerScopredVariable;
+    }
+}
+
+function collectOddValues(arr){
+    let result = [];
+    function helper(helperInput){
+        if(helperInput.length === 0){
+            return;
+        }
+        if(helperInput[0] % 2 !== 0){
+            result.push(helperInput[0])
+        }
+        helper(helperInput.slice(1))
+    }
+    helper(arr)
+
+    return result
+}
+
+We do this b/c if we try to define result = [], resets it every time
+Helper method recursion helps us push into an array
+
+Graph section of course will use helper method recursion
+
+Ch 49: Pure Recursion
+No nested function helper method 
+function collectOddValues(arr){
+    let newArr = []
+
+    if (arr.length === 0){
+        return newArr
+    }
+
+    if(arr[0] % 2 !== 0){
+        newArr.push(arr[0])
+    }
+
+    newArr = newArr.concat(collectOddValues(arr.slice(1)));
+    return newArr;
+}
+
+[1, 2, 3, 4, 5]
+
+newArr = [1].concat(collectOddValues([2,3,4,5]))
+newArr = [1].concat([]).concat(collectOddValues([3,4,5]))
+newArr = [1].concat([]).concat([3]).concat(collectOddVales([4,5]))
+
+
+
+Pure Recursion Tips
+For arrays, use methods like slice, the spread operator, and concat
+that makes copies of arrays so you do not mutate them
+This will allow you to accumulate some sort of result
+Strings are immutable so you will need to use methods like slice, substr or substring to make copies of strings 
+To make copies of objects, use Object.assign or the spread operator
+
+
+ch 50: Recursion Problem Set
+
+// power(2,0) // 1
+// power(2,2) // 4
+// power(2,4) // 16
+
+function power(base, exponent){
+    if(exponent === 0){
+        return 1;
+    }
+    return base * power(base, exponent-1)
+}
+
+//factorial(1) // 1
+// factorial(2) // 2
+// factorial(4) // 24
+// factorial(7) // 5040
+
+function factorial(num){
+    if(num === 0) return 1;
+    return num * factorial(num-1)
+}
+
+// productOfArray([1,2,3]) // 6
+// productOfArray([1,2,3,10]) // 60
+
+function productOfArray(arr){
+    if(arr.length === 0) return 1;
+    return arr[0] * productOfArray(arr.slice(1))
+}
+
+Recursive range accepts a number and adds up all the numbers from 0 to the 
+number passed in the function 
+// SAMPLE INPUT/OUTPUT
+// recursiveRange(6) // 21
+// recursiveRange(10) // 55 
+
+function recursiveRange(num){
+    if (num === 0) return 0;
+    return num+recursiveRange(num-1)
+}
+
+Recursive function caled fib which accepts a number and returns the 
+nth number in the Fibonacci sequence 
+Fibonacci sequence starts with 1,1 then adds last two numbers for next number
+
+// fib(4) // 3
+// fib(10) // 55
+// fib(28) // 317811
+// fib(35) // 9227465
+function fib(n){
+    if (n <= 2) return 1;
+    return fib(n-1) + fib(n-2);
+}
+
+
+//wrong
+// function fib(num){
+//   // add whatever parameters you deem necessary - good luck! 
+//   let fibResult = [1, 1]
+//   if(num === 1 || num === 2){
+//       return 1;
+//   }
+//   function fibAdd(index){
+//       if(num - 1 === index){
+//           return fibResult[index-1] +fibResult[index-2];
+          
+//       } 
+//       fibResult.push(fibResult[index-1] + fibResult[index - 2])
+//       fibAdd(index+1)
+//   }
+//   fibAdd(2)
+// }
+
+ljdfjakldja;jf
