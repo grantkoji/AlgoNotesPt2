@@ -1181,7 +1181,244 @@ function linearSearch(arr, value){
   Average case O(n)
   Worst case O(n)
 
-  
-  
+Binary search is muc faster form of search
+Rather than eliminating one element at a time, you can eliminate half of the remaining elements at
+a time 
+Binary search only works on sorted arrays
+    Number lowest to highest or highest to lowest
+    Or strings alphabetically sorted
 
-ljdfjakldja;jf
+This is a very short array in the grand scheme of things
+Tiniest fraction of a second we are saving with binary search 
+Binary search works by picking a halfway point and guess roughly 
+States[29]
+Check the middle sorted.
+Check if its greater than or less than 
+
+Implementation is done with divide and conquer 
+
+
+Accepts a sorted array and a value
+Create a left pointer at the start of the array and a right pointer
+at the end of the array
+Left is 0, right is array.length-1 
+Loop over and over.
+While the left pointer comes before the right pointer 
+Create a pointer in the middle  
+Check in each loop:
+1) have I found the element
+2) left is positioned before right value 
+2a) Createa  pointer in the middle 
+3) Is the element in the middle greater than or less than value
+ a) if middle value is too small, move the left pointer up
+ b) if middle value is too large, move the right pointer down 
+ if you never Left at the beginning, right is the end
+Check if its bigger than or less than
+eliminate, make a new left and keep current right
+Check middle point if its on the right side or left side
+ch 62: solution
+
+function binarySearch(array, value){
+    // add whatever parameters you deem necessary - good luck!
+    let start = 0;
+    let end = array.length - 1;
+    let middle = Math.floor((end + start) / 2)
+    while (array[middle] !== value && start <= end){
+       if (array[middle] > value){
+           end = middle - 1
+       } else if (array[middle] < value) {
+           start = middle + 1
+       } 
+       //if(value<array[middle]) end = middle - 1;
+       //else start = middle + 1;
+       middle = Math.floor((end + start) / 2)
+    }
+    if (array[middle] === value){
+        return middle;
+    } else {
+        return -1;
+    }
+    //return arr[middle] === value ? middle: -1;
+    
+  }
+  
+  Big O for binary search is O(log n) for worst case and average case
+  Best case is O(1)
+  
+  Ch 64: Naive String Search
+  
+  Suppose I want to count the number of times
+  
+  Long string we are searching for: 
+//   And we are looking for a smaller string inside of it
+Loop over longer string
+Loop over shorter string
+If the characgers don't natch, break out of the inner loop
+If the characters do match, keep going
+If you complete the inner loop and find a match, increment the count of matches
+REturn the count'
+function naiveSeach(long, short){
+    let count = 0;
+    for (let i=0; i < long.length; i++){
+        for (let j=0; j< short.length; j++){
+            if (short[j] !== long[i+j]){
+                break
+            } 
+            if (j === short.length - 1) {
+                count ++
+            }
+        }
+    }
+    return count
+}
+
+Javascript .sort()
+Takes in and converts everything to a string and looks 
+at unicode to compare and sort them
+
+The built in sort method accepts an optional comparator function
+You can use this comparator function to tell JavaScript how you want it to sort
+
+The comparator looks at pairs of elements (a and b),
+determines their sort order based on the return value
+
+If it returns a negative number, a should come before b
+If it returns a positive number, a should come after b
+If it returns 0, a and b are the same as far as the sort is concerned
+
+function compareByLen(str1, str2){
+    return str2.length - str1.length
+}
+
+arrayName.sort(compareByLen)
+
+Bubble sort. 
+Compare two elements, higher element goes toward the top 
+
+function swap (arr, idx1, idx2){
+    let temp = arr[idx1]
+    arr [idx1] = arr[idx2]
+    arr [idx2] = temp
+}
+
+//Using ES6
+const swap = (arr, idx1, idx2) => {
+    [arr[idx1], arr[idx2]] = [arr[idx2], arr[idx1]]
+}
+
+Start looping from with a variable called i at the end of the array 
+towards the beginning
+Start an inner loop with a variable called j from the beginning until i - 1
+If arr[j] > arr[j+1], swap those two values!
+Return the sorted array
+
+function bubbleSort(arr){
+    let noSwaps;
+    for (var i = arr.length; i > 0; i--){
+        noSwaps = true;
+        for (var j = 0; j < i-1;j++){
+            if (arr[j] > arr[j+1]){
+                //swap
+                var temp = arr[j]
+                arr[j] = arr[j+1]
+                arr[j+1] = temp
+                noSwaps = false
+            }
+        }
+        if(noSwaps) break;
+    }
+    return arr
+}
+
+function bubbleSort(arr){
+    const swap = (arr, idx1, idx2) => {
+        [arr[idx1], arr[idx2]] = [arr[idx2], arr[idx1]];
+    }
+        for (let i = arr.length; i > 0; i--){
+            for (let j = 0; j< i -1; j++) {
+                if (arr[j] > arr[j+1]){
+                    swap(arr, j, j+1)
+                }
+            }
+        }
+    return arr
+}
+
+
+Bubble sort best case is O(n) Worst case is O(n^2) Average case is O(n^2)
+Bubble sort is good if you are nearly sorted already
+
+
+Selection sort
+Similar to bubble sort, but insead of first placing large values into sorted
+position, it plaes small values into sorted position.
+Selection sort finds the minium, swaps it to the end, then places at the 
+beginning
+
+Stay at the first index 
+Compare it to all of them. Keep going and comparing until we find which one is the smallest
+And we then swap the first element with the smallest element
+Then we start from 44 
+
+function selectionSort(arr){
+   for (let i = 0; i < arr.length; i++){
+       let lowest = i;
+       for (let j = i + 1; j < arr.length; j++){
+        if (arr[j] < arr[lowest]) {
+            lowest = j
+        }
+       }
+       if (i !== lowest){
+        var temp = arr[i]
+        arr[i] = arr[lowest]
+        arr[lowest] = temp
+        }
+   }
+   return arr
+}
+
+Ch 79: Insertion Sort
+
+Gradually sorts as we're going through each of the elements in the array'
+Sort the first two, then the first 3, then the first 4 
+
+Start by picking the second element in the array:
+Now compare to one before it and swap if necessary
+Continue to next element and if it is in  the incorrect order, iterate through
+The sorted portion (i.e. the left side) to place the element in the correct place.
+Repeat until the array is sorted 
+
+//Gotta look up what's going on with insertionSort
+function insertionSort(arr){
+    for(let i = 1; i < arr.length; i++){
+        let currentVal = arr[i]
+        for (var j = i - 1; j >= 0 && arr[j] > currentVal; j--){
+            arr[j+1] = arr[j]
+        }
+        arr[j+1] = currentVal
+    }
+    return arr
+}
+
+Bubble sort:
+Best case O(n), Avg O(n^2), Worst O(n^2), Space complexity O(1)
+Insertion Sort:
+Best case O(n), Avg O(n^2), Worst O(n^2), Space complexity O(1)
+Selection Sort:
+Best case O(n^2), Avg O(n^2), Worst O(n^2), Space complexity O(1)
+
+
+Merge Sort
+
+These sorts are much faster, but also much more challenging to understand
+
+Use merge sort to change O(n^2)
+Turning into O(n log n)
+
+There's a tradeoff between efficiency and simplicity'
+The more efficient algorithms are much less simple,
+and generally take longer to understand 
+
+dljdfjakldja;jf
+
+j is 45 and undefined 
