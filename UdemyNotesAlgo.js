@@ -1648,5 +1648,128 @@ If you pivot along the middle every time, then you can avoid picking the
 first one every time 
 
 Instead, pick a random number or pick the median for the pick sort 
+Average time for quick sort is O(n log(n))
+
+Bubble sort: O(n^2)
+Insertion Sort: O(n^2)
+Selection Sort: O(n^2)
+Quick Sort: O(n log(n))
+Merge Sort: O(n log(n))
+
+Other types of sorting algorithms that are not comparison algorithms 
+
+Radix Sort Ch 99:
+Radix sort is a special sorting algorithm that works on lists of numbers
+
+It never makes comparisons between elements
+
+It exploirts the fact that information about the size of a number is encoded
+in the number of digits. 
+More digits means a bigger number 
+
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+Group them into buckets based off the number 
+Number on the right most positions 
+No matter how many digits are in it, we group them into bucketas based on its right 
+Most digits 
+Then form into a list keeping them in the order with 1's, then 2's and so on 
+Then we repeat the process looking at digit to left 
+Second digit 
+Means we can have 07 and 408 both in the 0 column 
+
+PUtting things in buckets, but when removing them they are rmeoved in the same 
+Order that they are placed in the bucket 
+
+//returns the digit in num at the given place value 
+function getDigit(num, i){
+    //using Math.abs so I can also use negative numbers 
+    //0 as i for single digit
+    //1 as i for tens
+    //2 as i for hundreds 
+    return Math.floor(Math.abs(num)/ Math.pow(10,i)) % 10;
+}
+
+digitCount 
+returns the number of digits in a given number 
+
+function digitCount(num){
+    //b/c Math.log10(0) is -Infinity
+    if (num===0) return 1;
+    return Math.floor(Math.log10(Math.abs(num))) + 1
+}
+
+function mostDigits(nums){
+    let maxDigits = 0;
+    for (let i = 0; i < nums.length; i++){
+        maxDigits = Math.max(MaxDigits, digitCount(nums[i]));
+    }
+    return maxDigits
+}
+
+Radix sort 
+Pseudocode 
+define a function that accwepts a list of numbers 
+Figure out how many digits the largest number has
+Loop from k=0 up to this largest number of digits 
+For each iteration of the loop: 
+    Create buckets for each digit (0 to 9)
+    Place each number in the corresponding bucket based on its 
+    kth digit
+Replace our existing array with values in our buckets, starting
+With 0 and going up to 9
+Return list at the end
+
+function getDigit(num, i){
+    //using Math.abs so I can also use negative numbers 
+    //0 as i for single digit
+    //1 as i for tens
+    //2 as i for hundreds 
+    return Math.floor(Math.abs(num)/ Math.pow(10,i)) % 10;
+}
+
+//helper
+function digitCount(num){
+    //b/c Math.log10(0) is -Infinity
+    if (num===0) return 1;
+    return Math.floor(Math.log10(Math.abs(num))) + 1
+}
+//helper
+function mostDigits(nums){
+    let maxDigits = 0;
+    for (let i = 0; i < nums.length; i++){
+        maxDigits = Math.max(MaxDigits, digitCount(nums[i]));
+    }
+    return maxDigits
+}
+
+function radixSort(nums){
+    let maxDigitCount = mostDigits(nums);
+    for(let k = 0; k < maxDigitCount; k++){
+        let digitBuckets = Array.from({length:10}, () => [])
+                //Another way to write [[] 10 times]
+        for let(i = 0; i < nums.length; i++){
+            // digitBuckets[getDigit(nums[i], k)].push(nums[i])
+            let digit = getDigit(nums[i], k);
+            digitBuckets[digit].push(nums[i]);
+        }
+        nums = [].concat(...digitBuckets);
+        ///use the spread operator to wind up with the values turned 
+        //into an array 
+
+    }
+    return nums;
+}
+
+Radix Sort
+Time Complexity (best) O(nk)
+Average: O(nk)
+Worst: O(nk)
+Space complexity O(n+k)
+
+B/c of ways computers store info 
+O(nk) becomes O(n log n)
+Saying this is same as n log n
+If saying radix sort is not as fast as it should be 
+
 
 j is 45 and undefined 
