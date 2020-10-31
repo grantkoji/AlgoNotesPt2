@@ -780,10 +780,15 @@ There is an endpoint .
 Base case is if(num===1)
 recursive call is return num + sumRange(num-1)
 
+
 function sumRange(num){
     if(num === 1) return 1
     return num + sumRange(num-1)
 }
+
+
+
+
 This function is returning over and over again.
 Going to keep returning num: 3 + sumRange(2)
     num: 3 + 2 + sumRange(1)
@@ -795,10 +800,10 @@ Going to keep returning num: 3 + sumRange(2)
 Ch. 45: Writing factorial iteratively
 4 * 3 * 2 * 1
 
-//Doing factorial without recursion
+//Factorial without recursion
 function factorial(num){
     let total = 1; 
-    for (let i=num; i > 0; i--){
+    for (let i = num; i > 0; i--){
         total *= i
     }
     return total
@@ -806,11 +811,14 @@ function factorial(num){
 
 Ch. 46: Writing factorial recursively
 
-//Doing factorial with recursion
+//Factorial with recursion
 function factorial(num){
     if(num === 1) return 1;
     return num * factorial(num-1)
 }
+
+
+
 if(num === 1) return 1; is base case 
 return num * factorial(num-1); is recursive call
 
@@ -868,18 +876,17 @@ Graph section of course will use helper method recursion
 
 Ch 49: Pure Recursion
 No nested function helper method 
-function collectOddValues(arr){
-    let newArr = []
 
-    if (arr.length === 0){
+
+function collectOddValues(array){
+    let newArr = []
+    if (array.length === 0){
         return newArr
     }
-
-    if(arr[0] % 2 !== 0){
+    if(array[0] % 2 !== 0){
         newArr.push(arr[0])
     }
-
-    newArr = newArr.concat(collectOddValues(arr.slice(1)));
+    newArr = newArr.concat(collectOddValues(array.slice(1)));
     return newArr;
 }
 
@@ -925,10 +932,13 @@ function factorial(num){
 // productOfArray([1,2,3]) // 6
 // productOfArray([1,2,3,10]) // 60
 
-function productOfArray(arr){
-    if(arr.length === 0) return 1;
-    return arr[0] * productOfArray(arr.slice(1))
+function productOfArray(array){
+    if(array.length === 0) return 1;
+    return array[0] * productOfArray(array.slice(1))
 }
+
+
+
 
 Recursive range accepts a number and adds up all the numbers from 0 to the 
 number passed in the function 
@@ -1419,6 +1429,224 @@ There's a tradeoff between efficiency and simplicity'
 The more efficient algorithms are much less simple,
 and generally take longer to understand 
 
-dljdfjakldja;jf
+When a function calls itself either directly or indirectly, it is said to be making a recursive call. . We can view a recursive routine as consisting of two parts.
+The recursive case. When the instance of the problem is still too large to solve directly, we split the problem into two or more smaller parts. It must be the case that the entire problem can be solved if each of the subproblems are solved.
+The basis (or ground) case. When the instance of the problem is small enough to be solved directly, we solve it. If the routine is a function, return the result of this subproblem to the function which called it.
+
+
+
+The basic idea behind solving problems via recursion is to break the instance of the problem into smaller and smaller pieces until the pieces are so small they can be solved trivially.
+A function that calls itself
+Again and again on a smaller list
+Recursion occurs all over the place
+Can have a function calling itself over and over inside a nested
+JSON.parse and JSON.stringify are recursion
+document.getElementById and DOM traversal algorithms
+Object traversal
+We will see it with more complex data structures
+Recursion can be a sometimes cleaner alternative to iteration. Functions are waiting for other functions to occur. If you have a function called first, then have a second function.
+Recursion occurs most in a call stack.
+It's sometimes a cleaner alternative to iteration '
+To write effective recursive code that doesnt break
+Functions are waiting for other functions to occur
+If you have a function called first then have a second function
+Theres a thing called a call stack
+A data structure called a stack
+Recursive functions keep pushing a new function onto the call stack over and over again. When a function is invoked, it is placed on the top of the call stack. When a function ends the compiler will remove the function from the stack. You put something on top, when you remove something you remove from the top (removal is a pop in JavaScript).
+What I would want to do is change the list and chop off one number
+at the beginning and try to do the same thing until
+We hit an empty list
+ase case almost always involves conditional and it returns something
+There is an endpoint .ß
+
+
+Merging two sorted arrays 
+1 array that is returned . 
+Logic for this one maes sessionStorage. 
+
+First implement a function responsible for merging two sorted arrays
+Given two arrays which are sorted, this helper function should create a new array which import {  } from "also sorted 
+and consists of all of the elements in the two input rrays
+O(n+m) time and O(n+m) space and should not modify the parameters passsd in
+
+Create an empty array, take a look at the smallest values in each input array
+While there are still values we havent looked at...array  
+   If the value in the first array is smaller than the value in the second array 
+   push the value in the first array into our results and move on to the next value in the first 
+   array. If the value in the first array is larger than the value in the second array, push
+   the value in the second array into our results and move on to the next value in the second array 
+   Once we exhaustone array, push in all remaining values from the other array 
+   
+   merge ([1, 10, 50], [2, 14, 99, 100])
+   
+   [1, 10, 50] [2, 14, 99, 100]
+   
+   [1, 2, 10, 14, 50, 99, 100]
+
+   function merge(arr1, arr2){
+       let results = []
+       let i = 0
+       let j = 0
+        while(i < arr1.length && j < arr2.length){
+            if(arr2[j] > arr1[i]){
+                results.push(arr1[i]);
+                i++;
+            } else {
+                results.push(arr2[j]);
+                j++;
+            }
+        }
+        while (i < arr1.length) {
+            results.push(arr1[i]);
+            i++
+        }
+        while (j < arr2.length){
+            results.push(arr2[j]);
+            j++
+        }
+       return results; 
+   }
+
+   mergeSort Pseudocode 
+   Break up the array into halves until you have arrays that are empty or havve one element
+   Use slice to go from beginning to middle array and from middle array to end 
+
+   Break up array nto halves recursively until you hit the end. 
+
+   Once you have smaller sorted arrays, merge those arrays withother sorted arrays until you are back at the full 
+   length of the array
+   Once the array has been merged back together, return the merged (and sorted!) array 
+
+
+function merge(arr1, arr2){
+    let results = []
+    let i = 0
+    let j = 0
+     while(i < arr1.length && j < arr2.length){
+         if(arr2[j] > arr1[i]){
+             results.push(arr1[i]);
+             i++;
+         } else {
+             results.push(arr2[j]);
+             j++;
+         }
+     }
+     while (i < arr1.length) {
+         results.push(arr1[i]);
+         i++
+     }
+     while (j < arr2.length){
+         results.push(arr2[j]);
+         j++
+     }
+    return results; 
+}
+
+function mergeSort(arr){
+    if(arr.length <=1) return arr;
+    let mid = Math.floor(arr.length/2);
+    let left = mergeSort(arr.slice(0,mid));
+    let right = mergeSort(arr.slice(mid))
+    return merge(left, right)
+
+}
+
+mergeSort([10, 24, 76, 73, 1, 9])
+
+Using slice
+var arr= [10, 24, 76, 73, 72, 1, 9]
+arr.slice
+
+Math.floor
+
+Merge Sort
+Time Complexity Best case O(n logn)
+Time Complexity AVerage case O(n log n)
+Time Complexity Worst case O(n log n)
+Space complexity O(n)
+
+[8] [3] [5] [4]
+    [8, 3] [5, 4]
+    [3, 4, 5, 8]
+    Takes log n steps, each step goes through n operations to sort
+        Thus O(n log n) time complexity
+   
+   
+Ch 92 Quick sort: 
+Like merge sort exploit fact that arrays of 0 or 1 element are always sorted
+Works by selecting one element (called the 'pivot') and finding the index here the pivot 
+should end up in the sorted array 
+
+[5, 2, 1, 8, 4, 7, 6, 3]
+Take 5 
+[3, 2, 1, 4, 5, 7, 6, 8]
+We know 5 is in the correct spot 4
+Now we repeat process on left side 
+Take 3 
+[2, 1, 3, 4, 5, 7, 6, 8]
+Take 2
+Now we repeat process 
+[1, 2, 3, 4, 5, 7, 6, 8]
+Take 1 
+Take 4 
+
+We keep track of which elements are less than 11 
+swap 
+        
+Pivot should be the median value in the data set ";
+Pivot Pseudocode "
+3 arguments: array, start index (default 0), end index (default array.length -1) 
+Grab pivot from start of array
+Store pviot index in a variable 
+Loop through array from start until end 
+    If pivot > current element, imcrement the pivot index variable and then 
+    swap the current element and then wap the current element with the element 
+    as the pivot index
+    swap the starting element (i.e. the pivot) with the pivot index 
+    dljdfjakldja;jf
+
+function pivot(arr, start=0; end=arr.length -1){
+    var pivot = arr[start];
+    var swapIdx = start;
+    function swap(array, i, j){
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+
+    for (var i = start + 1; i < arr.length; i++){
+        if(pivot > arr[i]){
+            swapIdx++;
+            swap(arr, swapIdx, i)
+        }
+    }
+    swap(arr, start, swapIdx)
+    return swapIdx
+}
+
+quicksort pseudocode 
+Checking if start and end points are equal to one another
+Call pivot helper on array
+When helper returns to you the updated pivot index, recursively call the 
+pivot helper on the subarray to the left of that index, and the subarray 
+to the right of that index
+Your base case occurs wehn you consider a subarray with less than 2 elements
+function quickSort(arr, left,=0, right = arr.length-1){
+    if(left < right) {
+        let pivotIndex = pivot(arr, left, right)
+        //left 
+        quickSort(arr, left, pivotIndex - 1)
+        //right
+        quickSort(arr, pivotIndex + 1, end)
+    }
+    return arr;
+}
+
+Worst case, quicksort is O(n^2)
+That is if you make the start of the array the beginning of the pivot 
+If you pivot along the middle every time, then you can avoid picking the 
+first one every time 
+
+Instead, pick a random number or pick the median for the pick sort 
 
 j is 45 and undefined 
