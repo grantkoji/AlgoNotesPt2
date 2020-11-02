@@ -1771,5 +1771,142 @@ O(nk) becomes O(n log n)
 Saying this is same as n log n
 If saying radix sort is not as fast as it should be 
 
+classes
+SyntaxError
+class Student {
+    constructor(firstName, lastName){
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+}
 
+//The method to create new objects must be called ocnstructor
+
+//The class keyword creates a constant, so y ou cannot redefine it.
+//Watch out for the syntax as well
+
+//Whatever is passed in when a new student is creted, assign those two properties to that student 
+
+//Creating objects from classes
+We use the new keyword
+
+class Student {
+    constructor(firstName, lastName, year){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.grade = year;
+        this.tardies = 0;
+    }
+    fullName(){
+        return `Your full name is ${this.firstName} ${this.lstName}`;
+    }
+    markLate(){
+        this.tardies += 1;
+        if(this.targies >= 3) {
+            return "You are expelled!!!"
+        }
+        return `${this.firstName} ${this.lastName} has been late ${this.tardies} times`
+    }
+    addScore(score){
+        this.scores.push(score);
+        return this.scores
+    }
+    calculateAverage(){
+        let sum = this.scores.reduce(function(a,b){return a+b;})
+        return sum/this.scores.length;
+    }
+}
+
+let firstStudent = new Student("Colt", "Steele")
+let secondStudent = new Student("Blue", "Steele")
+
+let John = new Student("John", "Smith", 3rd)
+
+John.firstName => "John"
+Can also update his grade
+John.grade = 2nd
+
+John => Student (firstName: "John", lastName: "Smith", grade: 2nd)
+John.fullName() => "Your full name is John Smith"
+John.markLate() => "John has been late 2 times"
 j is 45 and undefined 
+
+secondStudent.addScore(92)
+=> 92
+secondStudent.addScore(87)
+=> [92, 87]
+secondStudent.calculateAverage()
+=> 89.5
+
+Using static 
+
+static methods cannot be called through a class instance. 
+Static methods are for utility funcitons for out method 
+
+class Student {
+    constructor(firstName, lastName, year){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.grade = year;
+        this.tardies = 0;
+    }
+    fullName(){
+        return `Your full name is ${this.firstName} ${this.lstName}`;
+    }
+    static enrollStudents(...students){
+        // maybe send an email here
+    }
+}
+
+Student.enrollStudents([John, secondStudent])
+
+firstStudent.EnrollStudents()
+
+static distance(a,b){
+    const dx = a.x - b.x;
+    const dy = a.y - b.y;
+
+    return Math.hypot(dx, dy);
+}
+
+const p1 = new Point(5,5)
+const p2 = new Point(10, 10)
+Point.distance(p1, p2)
+    static makes it a class method 
+Instance methods are called on an individual instance
+
+How we'll be using classes ' Well be defining a class
+class DataStructure(){
+    constructor(){
+        //what default properties should it have?
+    }
+    someInstanceMethod(){
+        // what should each object created from this class be able to do?
+    }
+}
+
+We will be using constructor and isntance methods quite a bit 
+We will amost never be using static methods 
+
+Most of it will follow this pattern 
+
+Class datastructure/instance method 
+
+One gotcha with 'this'
+Inside all oof our instanc emthods and constructor, the keyword 'this' refers 
+to the object created from that class (also known as an instance)
+
+Classes are bluepreints that when created make objects known as instances 
+
+Classes are created with the newq keyword 
+
+The constructor function is a special function that gets run when the class is instantitaed
+
+Instance methods can be added to classes similar to methods in objects
+
+Class methods can be added using the static keyword 
+
+
+
+
+
