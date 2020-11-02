@@ -1906,6 +1906,568 @@ Instance methods can be added to classes similar to methods in objects
 
 Class methods can be added using the static keyword 
 
+Going to use this class keyword in almost every data structure we make 
+
+Singly Linked List Ch. 110
+Singly linked list class for DataTransferItemList
+
+A linked list is a bunch of elements with no indices that are pointing to the next element 
+A Headers, tail, and length property 
+Each element is a node, each node has a value and a pointer to another node or null 
+
+Head is like index 0
+Tail is like list.length 
+Each item points to the next item
+A bunch of nodes pointing to other nodes 
+
+Singly linked list points to next node 
+Doubly linked list points to next node and previous node 
+
+Connected via nodes with a next pointer 
+Random Access is not allowed 
+
+Arrays are indexed in order, insertion and deletion can be expensiven, can quickly be accessed
+at a specific index 
+
+class Node )
+()
+for )
+
+class Node{
+    constructor(val){
+        this.val = val;
+        this.next = null;
+    }
+}
+
+var first = new Node("Hi")
+first.next = newNode("there")
+first.next.next = new Node("there")
+first.next.next.next = new Node("are")
+first.next.next.next.next = new Node("you")
+
+class SinglyLinkedList{
+    constructor(){
+        this.head = null;
+        this.tail = null;
+        this.length = 0; 
+    }
+    push(val){
+       
+    }
+}
+
+var list = new SinglyLinkedList()
+list.push("Hello")
+list.push("Goodbye")
+
+Pushing into Singly Linked List 
+Push a value 
+Creat a new node using the value passed to the function
+If there is no head property on the list, set the head and tail to be the newly cdreated node
+If there is a head, set the next property on the tail to be the new node 
+And set the tail property on the list to be the newly created node 
+Increment the length by one
+
+class Node{
+    constructor(val){
+        this.val = val;
+        this.next = null;
+    }
+}
+
+class SinglyLinkedList{
+    constructor(){
+        this.head = null;
+        this.tail = null;
+        this.length = 0; 
+    }
+    push(val){
+       var newNode = new Node(val)
+       if(!this.head) {
+           this.head = newNode;
+           this.tail = this.head
+       } else {
+           this.tail.next = newNode;
+           this.tail = newNode
+       }
+       this.length++;
+       return this;
+    }
+    traverse(){
+        var current = this.head;
+        while(current){
+            console.log(current.val;)
+            current = current.next
+        }
+    }
+}
+list.push(99)
+list.head => "Hi
+list.head.next"
+list.head
+list.head.next
+
+Popping pseudocode 
+If there are no nodes in the list, return undefined 
+Loop through the list until you reach the tail 
+Set the next property of the 2nd to last node to be null 
+Decrement the length of the list by 1
+Return the value of the node removed 
+
+//with pop
+class SinglyLinkedList{
+    constructor(){
+        this.head = null;
+        this.tail = null;
+        this.length = 0; 
+    }
+    push(val){
+       var newNode = new Node(val)
+       if(!this.head) {
+           this.head = newNode;
+           this.tail = this.head
+       } else {
+           this.tail.next = newNode;
+           this.tail = newNode
+       }
+       this.length++;
+       return this;
+    }
+    traverse(){
+        var current = this.head;
+        while(current){
+            console.log(current.val;)
+            current = current.next
+        }
+    }
+    pop(){
+        if(!this.head) return undefined;
+        var current = this.head;
+        var newTail = current;
+        while(current.next){
+            newTail = current; 
+            current = current.next;
+        }
+        this.tail = newTail;
+        this.tail.next = null;
+        this.length--;
+        if(this.length === 0) {
+        //can also do if(this.head === this.tail)
+            this.head = null;
+            this.tail = null;
+        }
+        return current;
+    }
+
+    shift(){
+        if(!this.head) return undefined;
+        var currentHead = this.head 
+        this.head = currentHead.next 
+        this.length--
+        if(this.length === 0) {
+            //can also do if(this.head === this.tail)
+                this.tail = null;
+            }
+        return currentHead 
+            //this is an old head that we just shifted off 
+    }
+}
+
+var list = new SinglyLinkedList()
+list.push("Hello")
+list.push("Goodbye")
+list.push("!")
+
+list.pop()
+
+Reassigning new head, it's O(1 time)
+
+Shifting pseudocode 
+
+If there are not nodes, return undefined 
+Store the current head property in a variable 
+Set the head property to be the current head's next property
+Decrement the length by 1
+Return the value of the node removed 
+
+
+Unshifting ch 117
+Add a new node to the beginning of the LInked List
+Take the old head, point the new head at the old head and move the new head.
+This function should accept a value 
+Create a new node using the value passed to the function 
+If there is no head property on the list, set the head and tail to be the newly
+created node 
+Otherwise set the newly created node's next property to be the current head propetry on the list 
+Set the head property on the list to be that ' newly created node 
+
+class SinglyLinkedList{
+    constructor(){
+        this.head = null;
+        this.tail = null;
+        this.length = 0; 
+    }
+    push(val){
+       var newNode = new Node(val)
+       if(!this.head) {
+           this.head = newNode;
+           this.tail = this.head
+       } else {
+           this.tail.next = newNode;
+           this.tail = newNode
+       }
+       this.length++;
+       return this;
+    }
+    traverse(){
+        var current = this.head;
+        while(current){
+            console.log(current.val;)
+            current = current.next
+        }
+    }
+    pop(){
+        if(!this.head) return undefined;
+        var current = this.head;
+        var newTail = current;
+        while(current.next){
+            newTail = current; 
+            current = current.next;
+        }
+        this.tail = newTail;
+        this.tail.next = null;
+        this.length--;
+        if(this.length === 0) {
+        //can also do if(this.head === this.tail)
+            this.head = null;
+            this.tail = null;
+        }
+        return current;
+    }
+
+    shift(){
+        if(!this.head) return undefined;
+        var currentHead = this.head 
+        this.head = currentHead.next 
+        this.length--
+        if(this.length === 0) {
+            //can also do if(this.head === this.tail)
+                this.tail = null;
+            }
+        return currentHead 
+            //this is an old head that we just shifted off 
+    }
+
+    unshift(val){
+        var newNode = new Node(val)
+        if(!this.head) {
+            this.head = newNode
+            this.tail = newNode
+        } else {
+            newNode.next = this.head;
+            this.head = newNode;
+            
+        }
+        this.length++;
+        return this;
+    }
+    get(index){
+        if(index < 0 || index >- this.length) return null;
+        var counter = 0;
+        var current = this.head;
+        while (counter !== index){
+            current = current.next
+            counter++;
+        }
+        return current;
+    }
+    set(index, val){
+        var foundNode = this.get(index)
+        if (foundNode){
+            foundNode.val = val;
+            return true;
+        }
+        return false;
+    }
+
+}
+
+Get pseudocodeThis function should accept an index 
+If the index is less than zero or greater than or equal to the length of the list, return null
+Loop through the list until you reach the index and return the node at that specific index 
+
+var list = new SinglyLinkedList()
+list.push("Hello")
+counter 
+list.push("Goodbye") current equals this, counter is 0
+list.push("!") current equal this, counter is 1
+list.push("<3") current equals this, counter is 2
+list.push("eyes") current equals this, counter is 3 
+
+This is when counter is equal to the index, 3, so now we just return current ('eyes')
+
+list.get(100) => null
+list.get(3) => "eyes"
+
+Set pseudocode 
+This function should accept a value and an index 
+Use your get function to find the specific node
+If the node is not found, return false
+If the node is found, set the value of that node to be the value passed 
+to the function and return true
+
+list.set(3, "!!!") => Node {val "!!!"}
+list.set(numberThatDoesNotExist, "...") => false 
+
+Insert, allows me to insert at a specific index 
+Pseudocode:
+If the index is less than zero or greater than the length, return false 
+If the index is the same as the length, push a new node to the end of the list 
+If the index is 0, unshift a new node to the start of the list
+Otherwise, using the get method, access the node at the index -1 
+Set the next property on that node to be the new node 
+Set the next property on the new node to be the previous next 
+Increment the length
+Return true  
+
+insert(index, val){
+        if (index < 0 || index > this.length) return false;
+        if (index === this.length) return !!this.push(val);
+                                //If I want to return true here 
+                            //{this.push(val)
+                            //return true}
+        if (index === 0) return !!this.unshift(val)
+                            //If I want to return true here 
+                            //{this.unshift(val)
+                            //return true}
+        var prev = this.getIndex(index - 1)
+        var newNode = new.Node(val)
+        var temp = prev.next
+        prev.next = newNode 
+        newNode.next = temp
+        this.length++
+        return true;
+}
+
+Remove pseudocode 
+If the index is less than zero or greater than the length, return undefiend
+If the index is the same as length-1, pop 
+If the index is 0, shift
+Otherwise, using the get method, access the node at the index -1
+Set the next property on that node to be the next of the next node
+Decrement the length
+Return the value of the node removed 
+
+remove(index){
+    if(index < 0 || index >= this.length) return undefined //or false 
+    if(index === 0) return this.shift();
+    if(index === this.length) return this.pop();
+    var previousNode = this.get(index - 1);
+    var removed = previousNode.next; 
+    previousNode.next = removed.next 
+    this.length--;
+    return removed;
+}
+
+
+class SinglyLinkedList{
+    constructor(){
+        this.head = null;
+        this.tail = null;
+        this.length = 0; 
+    }
+    push(val){
+       var newNode = new Node(val)
+       if(!this.head) {
+           this.head = newNode;
+           this.tail = this.head
+       } else {
+           this.tail.next = newNode;
+           this.tail = newNode
+       }
+       this.length++;
+       return this;
+    }
+    traverse(){
+        var current = this.head;
+        while(current){
+            console.log(current.val;)
+            current = current.next
+        }
+    }
+    pop(){
+        if(!this.head) return undefined;
+        var current = this.head;
+        var newTail = current;
+        while(current.next){
+            newTail = current; 
+            current = current.next;
+        }
+        this.tail = newTail;
+        this.tail.next = null;
+        this.length--;
+        if(this.length === 0) {
+        //can also do if(this.head === this.tail)
+            this.head = null;
+            this.tail = null;
+        }
+        return current;
+    }
+
+    shift(){
+        if(!this.head) return undefined;
+        var currentHead = this.head 
+        this.head = currentHead.next 
+        this.length--
+        if(this.length === 0) {
+            //can also do if(this.head === this.tail)
+                this.tail = null;
+            }
+        return currentHead 
+            //this is an old head that we just shifted off 
+    }
+
+    unshift(val){
+        var newNode = new Node(val)
+        if(!this.head) {
+            this.head = newNode
+            this.tail = newNode
+        } else {
+            newNode.next = this.head;
+            this.head = newNode;
+            
+        }
+        this.length++;
+        return this;
+    }
+    get(index){
+        if(index < 0 || index >- this.length) return null;
+        var counter = 0;
+        var current = this.head;
+        while (counter !== index){
+            current = current.next
+            counter++;
+        }
+        return current;
+    }
+    set(index, val){
+        var foundNode = this.get(index)
+        if (foundNode){
+            foundNode.val = val;
+            return true;
+        }
+        return false;
+    }
+    insert(index, val){
+        if (index < 0 || index > this.length) return false;
+        if (index === this.length) return !!this.push(val);
+                                //If I want to return true here 
+                            //{this.push(val)
+                            //return true}
+        if (index === 0) return !!this.unshift(val)
+                            //If I want to return true here 
+                            //{this.unshift(val)
+                            //return true}
+        var prev = this.getIndex(index - 1)
+        var newNode = new.Node(val)
+        var temp = prev.next
+        prev.next = newNode 
+        newNode.next = temp
+        this.length++
+        return true;
+    }
+    remove(index){
+        if(index < 0 || index >= this.length) return undefined //or false 
+        if(index === 0) return this.shift();
+        if(index === this.length) return this.pop();
+        var previousNode = this.get(index - 1);
+        var removed = previousNode.next; 
+        previousNode.next = removed.next 
+        this.length--;
+        return removed;
+    }
+    print(){
+        var arr = [];
+        var current = this.head; 
+        while(current){
+            arr.push(current.val)
+            current = current.next
+        }
+        console.log(arr)
+    }
+    reverse(){
+        var node = this.Head 
+        this.head = this.tail 
+        this.tail = node
+        var prev = null 
+        //prev is null to make sure the end of our list, the tail is null
+        var next; 
+        for(i=0; i<this.length; i++){
+            //can also do a while loop here
+            next = node.next
+            node.next = prev
+            prev = node; 
+            node = next;
+        }
+        return this;
+    }
+}
+
+list.remove(0)
+list.remove(-1) => undefined //or false if I want it to 
+list.remove(15)
+
+Reverse 
+Reversing the linked list in place!
+Swap the head and the tail 
+Create a variable called next 
+Create a variable called prev 
+Create a variable called node and initialize it to the head property 
+Loop through the list 
+Set next to be the next property on whatever node is; 
+Set the next property on the node to be whatever prev is;
+Set prev to be the value of the node variable; 
+Set the node variable to be the value of the next variable 
+
+Helper method called print
+//to help us see what is happening in reverse 
+print(){
+    var arr = [];
+    var current = this.head; 
+    while(current){
+        arr.push(current.val)
+        current = current.next
+    }
+    console.log(arr)
+}
+reverse(){
+    var node = this.Head 
+    this.head = this.tail 
+    this.tail = node
+    var prev = null 
+    //prev is null to make sure the end of our list, the tail is null
+    var next; 
+    for(i=0; i<this.length; i++){
+        //can also do a while loop here
+        next = node.next
+        node.next = prev
+        prev = node; 
+        node = next;
+    }
+    return this;
+}
+
+
+Big O of Singly Linked List 
+Insertion O(1)
+Removal It depeends...O(1) or O(n)
+Searching - O(n)
+Acceess - O(n)
+
+Singly Linked Lists excel at insertion and deletion compared to arrays 
+
+
 
 
 
