@@ -2410,6 +2410,22 @@ class SinglyLinkedList{
         }
         return this;
     }
+    insert(index, val){
+        if(index < 0 || index > this.length) return false;
+        if(index===0)return this.unshift(val);
+        if(index === this.length) return this.push(val);
+        let newNode = new Node(val);
+        let foundNode = this.get(index - 1)
+        let beforeNode= this.get(index-1)
+        let afterNode = beforeNode.next;
+        beforeNode.next = newNode;
+        newNode.prev = beforeNode;
+        afterNode.prev = newNode;
+        newNode.next = afterNode;
+        this.length++;
+        return true;
+    }
+    
 }
 
 list.remove(0)
@@ -2467,6 +2483,312 @@ Singly Linked Lists excel at insertion and deletion compared to arrays
 
 Above is Singly LInked Lists:
 Next is Doubly Linked Lists 
+
+Each node is pointing to its previous node and the next node
+The head is pointing to null for its previous node 
+The tail is pointing to null for its next node 
+Almost always a trade off between more memory and more flexibility 
+)
+
+Node and Doubly Linked Lists 
+Node
+-val 
+-prev
+-next 
+
+DoublyLinkedList
+-head
+-tail 
+-length 
+
+class Node{
+    constructor(val){
+        this.val = val;
+        this.next = null; 
+        this.prev = null;
+    }
+}
+
+class DoublyLinkedList {
+    constructor(){
+        this.head = null;
+        this.tail = null;
+        this.length = 0;
+    }
+    push(val){
+        newNode = new Node(val);
+        if(this.length===0) {
+            this.head = newNode;
+            this.tail = newNode;
+        } else { 
+            this.tail.next = newNode;
+            newNode.prev = this.tail;
+            this.tail = newNode;
+        }
+        this.length++;
+        return this;
+        //return the entire list 
+    }  
+    pop(){
+        if(!this.head) return undefined;
+        // or can use if(this.length === 0) return undefined;
+        var poppedNode = this.tail;
+        if(this.length===1){
+            this.head = null;
+            this.tail = null;
+        } else {
+        this.tail = poppedNode.prev; 
+        this.tail.next = null; 
+        poppedNode.prev = null;
+        }
+        this.length--;
+        return poppedNode;
+    }
+    shift(){
+        if(this.length===0) return undefined;
+        let oldHead = this.head;
+        if(this.length===1){
+            this.head = null;
+            this.tail = null;
+        } else {
+        this.head = oldHead.next; 
+        this.head.prev = null;
+        oldHead.next = null;
+        }
+        this.length--;
+        return oldHead;
+    }
+    unshift(val){
+        let newNode = newNode(val);
+        if(this.length === 0) {
+            this.head = newNode;
+            this.tail = newNode;
+        } else {
+            this.head.prev = newNode;
+            newNode.next = this.head;
+            this.head = newNode;
+        }
+        this.length++;
+        return this;
+    }
+    get(index){
+        if(index < 0 || index >= this.length) return null;
+        let current, count;
+        if(index <= this.length / 2){
+            count = 0; 
+            current = this.head; 
+            while(count != index){
+                current = current.next 
+                count++;
+            }
+        } else{
+            count = this.length - 1;
+            current = this.tail; 
+            while(count !== index){
+                current = current.prev; 
+                count--;
+            }
+        }
+        return current;=
+    }
+    set(index, val){
+        let foundNode = this.get(index);
+        if (foundNode != null){
+            foundNode.val = val;
+            return true;
+        } return false;
+    }
+    
+
+}
+
+first = new Node(12);
+first.next = new Node(13);
+first.next.prev = first
+
+Adding push to the end of the doubly linked list 
+Create new node with the value passed to the function 
+If the head property is null set the head and tail to be the newly created node
+If not, set the next property on the tail to be that node 
+Set the previous property on the newly created node to be the tail 
+Set the tail to be the newly created node 
+Increment the length
+Return the Doubly Linked List
+
+push(val){
+    newNode = new Node(val);
+    if(this.length===0) {
+        this.head = newNode;
+        this.tail = newNode;
+    } else { 
+        this.tail.next = newNode;
+        newNode.prev = this.tail;
+        this.tail = newNode;
+    }
+    this.length++;
+    return this;
+    //return the entire list 
+}  
+
+Pop pseudocode 
+If there is no head, return undefined.
+Store the current tail in a variable to be returned later 
+If the length is 1, set the head and tail to be null 
+Update the tail to be the previous Node 
+Set the new Tail's next to null'
+decrement the length 
+Return the value removed 
+WHen I sever the tie, need to remove both references 
+    Technically not a problem unless someone finds theother node and
+    Go to .prev will return them to list even if it's supposed to be popped off'
+pop(){
+    if(!this.head) return undefined;
+    // or can use if(this.length === 0) return undefined;
+    var poppedNode = this.tail;
+    if(this.length===1){
+        this.head = null;
+        this.tail = null;
+    } else {
+    this.tail = poppedNode.prev; 
+    this.tail.next = null; 
+    poppedNode.prev = null;
+    }
+    this.length--;
+    return poppedNode;
+}
+
+
+Shift
+Find the head, make its .next the new head 
+New head .prev is null 
+Old head .next is null 
+
+If length is 0, return undefined
+Store the current head property in a variable, we'll call it old head'
+If the length is one 
+    Set the head to be null 
+    set the tail to be null 
+Update the head to be the next of the old head 
+Set the head's prev property to be null'
+Set the old head's next to be null'
+Decrement the length 
+return old head 
+
+shift(){
+    if(this.length===0) return undefined;
+    let oldHead = this.head;
+    if(this.length===1){
+        this.head = null;
+        this.tail = null;
+    } else {
+    this.head = oldHead.next; 
+    this.head.prev = null;
+    oldHead.next = null;
+    }
+    this.length--;
+    return oldHead;
+}
+
+
+Unshift will be added to beginning of doubly linked list 
+Point new node at the current head, point old head a current new head 
+Create a node node with value passed in
+If length is 0
+    Set the head to be the new node 
+    Se tthe tail to be the new node 
+Otherwise 
+    Set the prev property on the head of the list to be the new node 
+    Set the new node.next to the old head 
+    Set the new node as the new head 
+
+unshift(val){
+    let newNode = newNode(val);
+    if(this.length === 0) {
+        this.head = newNode;
+        this.tail = newNode;
+    } else {
+        this.head.prev = newNode;
+        newNode.next = this.head;
+        this.head = newNode;
+    }
+    this.length++;
+    return this;
+}
+
+Get pseudocode; 
+If the index is less than 0 or greater or equal to the length, return null
+If the index is less than or equal to half the length of the list 
+    Loop through the list starting from the head and loop towards the middle 
+    Return the node once it is found 
+If the index is greater than half the length of the list 
+    Loop through the list starting from the tail and loop towards the middle
+    Return the node once it is found 
+get(index){
+    if(index < 0 || index >= this.length) return null;
+    let current, count;
+    if(index <= this.length / 2){
+        count = 0; 
+        current = this.head; 
+        while(count != index){
+            current = current.next 
+            count++;
+        }
+    } else{
+        count = this.length - 1;
+        current = this.tail; 
+        while(count !== index){
+            current = current.prev; 
+            count--;
+        }
+    }
+    return current;=
+}
+
+Set
+Create a variable which is the result of the get method at the index passed to the function 
+    If the get method returns a valid node, set the value of that node to be the value 
+    passed to the function 
+    Return true
+Otherwise, return false 
+
+set(index, val){
+    let foundNode = this.get(index);
+    if (foundNode != null){
+        foundNode.val = val;
+        return true;
+    } return false;
+}
+
+Insert 
+    Adding a node in a Doubly Linked List by a certain position 
+    Creates a new node at that value and inserts a new node to the linked list 
+    Can use get method to find the appropriate place to retrieve and get index
+
+If the index is less than zero or greater than or equal to rthe length return false 
+If the index is 0, unshift 
+If the index is the same as the length, push 
+Otherwise, use get method to access the index -1
+Set the next and prev proeprties on the correcvt nodes to link everything togetherInc
+Increment the length 
+Return true
+
+insert(index, val){
+    if(index < 0 || index > this.length) return false;
+    if(index===0)return this.unshift(val);
+    if(index === this.length) return this.push(val);
+    let newNode = new Node(val);
+    let foundNode = this.get(index - 1)
+    let beforeNode= this.get(index-1)
+    let afterNode = beforeNode.next;
+    beforeNode.next = newNode;
+    newNode.prev = beforeNode;
+    afterNode.prev = newNode;
+    newNode.next = afterNode;
+    this.length++;
+    return true;
+}
+
+
 
 
 
