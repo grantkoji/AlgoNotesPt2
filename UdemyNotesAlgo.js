@@ -656,15 +656,15 @@ function same(array1, array2){
         return false;
     }
     //Iterate through array1
-    for(let i=0; i< array1.length; i++){
+    for(let i=0; i < array1.length; i++){
         //use .indexOf to find the index in array2 whose value matches array1[i]
-        let correctIndex = array2.indexOf(array1[i])
+        let correctIndex = array2.indexOf(array1[i]);
         if (correctIndex === -1){
          //if correctIndex is -1, then the array1[i] value is not inside array2
             return false;
         } else { 
         //if correctIndex is inside array2, use splice to remove that value from array2
-            array2.splice(correctIndex,1)
+            array2.splice(correctIndex,1);
         }
     }
     //We already established that array1 and array2 are the same length
@@ -680,37 +680,35 @@ function same(array1, array2){
         return false;
     }
     // Create object literals to store the number of times an element appears in each array
-    let frequencyCounter1 = {}
-    let frequencyCounter2 = {}
+    let frequencyCounter1 = {};
+    let frequencyCounter2 = {};
     //Iterate through the first array
     for (let i=0; i < array1.length; i++) {
-        let val = array1[i]
+        let val = array1[i];
         if (frequencyCounter1[val]) {
             //If the element is repeated, add its frequency to the counter object
-            frequencyCounter1[val] = frequencyCounter1[val] + 1
+            frequencyCounter1[val] = frequencyCounter1[val] + 1;
         } else {
             //If the element is found for the first time, start its count at 1
-            frequencyCounter1[val] = 1
-    }
+            frequencyCounter1[val] = 1;
         }
-        }
+    } 
     //Iterate through the second array
     for (let i=0; i < array2.length; i++) {
-        let val = array2[i]
+        let val = array2[i];
         //A cleaner way to check if the element is repeated, add its frequency to the 
         //counter object. If the element is found for the first time, start its count at 1
-        frequencyCounter2[val] = (frequencyCounter2[val] || 0) + 1
+        frequencyCounter2[val] = (frequencyCounter2[val] || 0) + 1;
     }
     for (let key in frequencyCounter1){
         if(!(key in frequencyCounter2)){
             //If the key in frequencyCounter1 does not appear as a key in frequencyCounter2
-            return false
+            return false;
         }
         if(frequencyCounter1[key] !== frequencyCounter2[key]) {
             //If the frequencies of the key (element value in original array) in both counters does not match
-            return false
+            return false;
         }
-
     }
     //We already established that array1 and array2 are the same length
     //If we go through each key of the elements in frequencyCounter1 and establish that same key
@@ -2467,6 +2465,8 @@ Acceess - O(n)
 
 Singly Linked Lists excel at insertion and deletion compared to arrays 
 
+Above is Singly LInked Lists:
+Next is Doubly Linked Lists 
 
 
 
