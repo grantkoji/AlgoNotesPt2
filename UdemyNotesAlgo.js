@@ -2410,22 +2410,6 @@ class SinglyLinkedList{
         }
         return this;
     }
-    insert(index, val){
-        if(index < 0 || index > this.length) return false;
-        if(index===0)return this.unshift(val);
-        if(index === this.length) return this.push(val);
-        let newNode = new Node(val);
-        let foundNode = this.get(index - 1)
-        let beforeNode= this.get(index-1)
-        let afterNode = beforeNode.next;
-        beforeNode.next = newNode;
-        newNode.prev = beforeNode;
-        afterNode.prev = newNode;
-        newNode.next = afterNode;
-        this.length++;
-        return true;
-    }
-    
 }
 
 list.remove(0)
@@ -2598,8 +2582,33 @@ class DoublyLinkedList {
             return true;
         } return false;
     }
-    
+    insert(index, val){
+        if(index < 0 || index > this.length) return false;
+        if(index===0)return this.unshift(val);
+        if(index === this.length) return this.push(val);
+        
+        //keep variable declarations a space apart
+        let newNode = new Node(val);
+        let beforeNode= this.get(index-1)
+        let afterNode = beforeNode.next;
 
+        //keep combined operations together
+        beforeNode.next = newNode, newNode.prev = beforeNode;
+        afterNode.prev = newNode, newNode.next = afterNode;
+        this.length++;
+        return true;
+    }
+    remove(index){
+        if(index < 0 || index >= this.length) return undefined;
+        if(index === 0) return this.shift();
+        if(index === this.length - 1) return this.pop();
+        let removedNode = this.get(index);
+        removedNode.prev.next = removedNode.next;
+        removedNode.next.prev = removedNode.prev;
+        removedNode.prev = null, removedNode.next = null;
+        this.length--;
+        return removedNode;
+    }
 }
 
 first = new Node(12);
@@ -2787,6 +2796,165 @@ insert(index, val){
     this.length++;
     return true;
 }
+
+Remove pseudocode 
+If the index is less than zero or greater than or equal to the length, return undefined 
+If index is 0, shift
+If index is same as the length-1, pop;
+Use the get method to retrieve the item to be removed 
+Update the next and prev properties to remove the found node from the list 
+Set next and prev to null on the found node 
+Subtract one from length 
+Return removed node
+
+remove(index){
+    if(index < 0 || index >= this.length) return undefined;
+    if(index === 0) return this.shift();
+    if(index === this.length - 1) return this.pop();
+    let removedNode = this.get(index);
+    removedNode.prev.next = removedNode.next;
+    removedNode.next.prev = removedNode.prev;
+    removedNode.prev = null, removedNode.next = null;
+    this.length--;
+    return removedNode;
+}
+
+class DoublyLinkedList {
+    constructor(){
+        this.head = null;
+        this.tail = null;
+        this.length = 0;
+    }
+    push(val){
+        newNode = new Node(val);
+        if(this.length===0) {
+            this.head = newNode;
+            this.tail = newNode;
+        } else { 
+            this.tail.next = newNode;
+            newNode.prev = this.tail;
+            this.tail = newNode;
+        }
+        this.length++;
+        return this;
+        //return the entire list 
+    }  
+    pop(){
+        if(!this.head) return undefined;
+        // or can use if(this.length === 0) return undefined;
+        var poppedNode = this.tail;
+        if(this.length===1){
+            this.head = null;
+            this.tail = null;
+        } else {
+        this.tail = poppedNode.prev; 
+        this.tail.next = null; 
+        poppedNode.prev = null;
+        }
+        this.length--;
+        return poppedNode;
+    }
+    shift(){
+        if(this.length===0) return undefined;
+        let oldHead = this.head;
+        if(this.length===1){
+            this.head = null;
+            this.tail = null;
+        } else {
+        this.head = oldHead.next; 
+        this.head.prev = null;
+        oldHead.next = null;
+        }
+        this.length--;
+        return oldHead;
+    }
+    unshift(val){
+        let newNode = newNode(val);
+        if(this.length === 0) {
+            this.head = newNode;
+            this.tail = newNode;
+        } else {
+            this.head.prev = newNode;
+            newNode.next = this.head;
+            this.head = newNode;
+        }
+        this.length++;
+        return this;
+    }
+    get(index){
+        if(index < 0 || index >= this.length) return null;
+        let current, count;
+        if(index <= this.length / 2){
+            count = 0; 
+            current = this.head; 
+            while(count != index){
+                current = current.next 
+                count++;
+            }
+        } else{
+            count = this.length - 1;
+            current = this.tail; 
+            while(count !== index){
+                current = current.prev; 
+                count--;
+            }
+        }
+        return current;=
+    }
+    set(index, val){
+        let foundNode = this.get(index);
+        if (foundNode != null){
+            foundNode.val = val;
+            return true;
+        } return false;
+    }
+    insert(index, val){
+        if(index < 0 || index > this.length) return false;
+        if(index===0)return this.unshift(val);
+        if(index === this.length) return this.push(val);
+        
+        //keep variable declarations a space apart
+        let newNode = new Node(val);
+        let beforeNode= this.get(index-1)
+        let afterNode = beforeNode.next;
+
+        //keep combined operations together
+        beforeNode.next = newNode, newNode.prev = beforeNode;
+        afterNode.prev = newNode, newNode.next = afterNode;
+        this.length++;
+        return true;
+    }
+    remove(index){
+        if(index < 0 || index >= this.length) return undefined;
+        if(index === 0) return this.shift();x
+        if(index === this.length - 1) return this.pop();
+        let removedNode = this.get(index);
+        removedNode.prev.next = removedNode.next;
+        removedNode.next.prev = removedNode.prev;
+        //let beforeNode = removedNode.prev 
+        // let afterNode = removedNode.next
+        // beforeNode.next = afterNode;
+        // afterNode.prev = beforeNode;
+        removedNode.prev = null, removedNode.next = null;
+        this.length--;
+        return removedNode;
+    }
+}
+
+Doubly Linked Lists
+Insertion O(1)
+Removal O(1)
+Searching O(N)
+    Technically, searching is O(N/2), but that's still O(N)'
+    //Because used divide and conquer
+Access O(N)
+
+Recap:
+Doubly Linked Lists are almost identical to singly linked lists except there is an additional poitner to previous nodes 
+Our web history is a doubly linked list 
+Doubly Linked Lists are better for finding nodes and can be done in half the time 
+) However, they do take up more memory considering the extra pointer
+
 
 
 
