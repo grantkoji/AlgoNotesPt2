@@ -2955,7 +2955,253 @@ Our web history is a doubly linked list
 Doubly Linked Lists are better for finding nodes and can be done in half the time 
 ) However, they do take up more memory considering the extra pointer
 
+Stacks and queues are abstract data structures. 
+Stacks are last in, first out.
+Like a stack of plates, you pile up, and the top most thing is removed first  
+LIFO
 
+Queues are first in, first out. 
+
+function factorial(x) {
+    if (x===0) return 1;
+    return x * factorial(x-1);
+}
+This is actually creating a stack. The last thing added in is the frist thing removed 
+
+Where stacks are used 
+
+Managing function invocations 
+Undo/Redo 
+Routing (the history object) is treated like a stack. 
+
+Trees and graphs, some of the algorithms use stacks and also queues to store history of things, things
+they want to come back to. 
+
+He's calling his stack inside an alogirhm as he's calling things and removing from stack 
+
+Theres more than one way to implement a stack 
+
+Ch 152.
+Creating a stack with an array: 
+The last thing added in is the first thing removed 
+The first thingg added is the last thing removed 
+Can use a built in array/list datatype 
+
+var stack = []
+stack.push("google.com") 
+stack.push("instagram")
+stack.push("youtube")
+stack // ["google", "instagram", "youtube"]
+stack.pop() will remove from the end of the array 
+
+Can also use built in array methods. 
+Were adding from the end and removing from the end 
+
+stack = []
+stack.unshift("create new file")
+stack.unshift("resize file")
+stack.shift() 
+Removes the last thing we put in. 
+
+Using shift/unshift is more inefficient because you havve to re-index everything 
+everytime you unshift to add to the array 
+Whereas push/pop just takes care of the end of the array 
+
+Non-array methods are ultimately preferred for efficiency if you dont need the indices of the array
+
+Linked List Implementation 
+Array Implementation 
+
+Doesnt mean its better  
+
+Should be able to initialize a new stack 
+var stack = new Stack()
+stack.push() //returns size 
+stack.pop() //returns last in, first out
+
+pushing pseudocode 
+funciton should accept a value 
+Create a new node with that value 
+If there are no nodes in the stack, set the firs tand last property to be the newly created nodde
+If there is at least one node, createa  variable that stores the current firs troperty on the stafk
+Reset the firse tpropety to be the newly created node
+Set the next property on the node to be the previously created variable
+Increment the size of the stack by 1 
+
+
+Pop pseudocode
+If there are no nodes in the stack, return null 
+Create a temporary ariable to store the first property on the stack 
+If tehre is only 1 node, set the first and last property to be null
+If there is more than one node, set the first property to be the next proeprty on the 
+current first 
+Decrement the size by 1
+Return the value of the removed node 
+class Node {
+    constructor(value){
+        this.value = value;
+        this.next = null;
+    }
+}
+class Stack {
+    constructor() {
+        this.first = null;
+        this.last = null;
+        this.size = 0;
+    }
+    push(val){
+        let newNode = new Node(val);
+        if(size===0){ //or (!this.first)
+            this.first = newNode;
+            this.last = newNode;
+        } else {
+            let temp = this.first;
+            this.first = newNode;
+            this.first.next = temp;
+        }
+        return ++this.size
+    }
+    pop(){
+        if(!this.first) return null;
+        let temp = this.first;
+        if(this.first === this.last) {
+            this.last = null;
+        }
+        this.first = this.first.next;
+        this.size--;
+        return temp.value;
+    }
+}
+//we are adding and rmeoving from the beginning of the list
+//but we are calling it push and pop b/c it is taking care of the end of
+//what we are adding to the list
+    
+In a stack, push and pop are supposed to be constant time 
+but in a singly linked list, pop is not a constant time 
+Had to loop over the entire list in that 
+
+Big O of stacks
+Insertion - O(1)
+Removal - O(1)
+Searching O(N)
+Access O(N)
+
+So stacks are really useful for insertion and removal .
+
+Stacks are a LIFO data scructure wehre the alst value in is always the first one. 
+
+Stacks ar eused to handle function invocations (the call stack) for operations like undo/redo and for
+routing (remember pages you have visited and go back/forward) and much more 
+
+They are not a built in data structure in JS but are relatively simple to implement 
+
+Ch 155
+Intro to queues 
+These are taught together and grouped together in one section, stacks and queues 
+
+What is a queue 
+Adding data in and moving data out. Instead of last in/first out 
+This is First In First out
+
+Queues are in waiting in a line 
+Online game, queue structure for who is going to get added into a game first 
+
+How do we use them in programming?
+Background tasks
+Uploading resources 
+Printing/Task processing 
+
+Add something in is en queue 
+Removing something is de queue 
+
+Creating queues using arrays 
+)
+var q = []
+q.push("First")
+q.push("Second")
+
+q.shift() ///this is a queue 
+
+
+or go the other way 
+var q = []
+q.unshift("Second")
+q.unshift("First")
+q.pop() //"Second"
+
+First in/first out. Could do unshift combined with pop 
+Or push combined with shift 
+Both give first in/first out 
+If the list is 10000 items means re indexing the entire queue every time 
+Popping from the end is preferred 
+But there is no way around re-indexing this whether we are .shift() in example 1 
+or if we are .unshift() in example 2 
+
+
+eqneue psuedocode 
+
+class Node {
+    constructor(value){
+        this.value = value;
+        this.next = null;
+    }
+}
+
+class Queue {
+    constructor(){
+        this.first = null;
+        this.last = null;
+        this.size = 0;
+    }
+    enqueue(val){
+        let newNode = new Node(val);
+        if(this.size ===0){
+            this.first = newNode;
+            this.last = newNode;
+            
+        } else {
+            this.last.next = newNode;
+            this.last = newNode;
+        }
+        return ++this.size;
+    }
+    dequeue(){
+        if(!this.first) return null;
+        let temp = this.first;
+        if (this.first === this.last){
+            this.last = null;
+        }
+        this.first = this.first.next;
+        this.size--;
+        return temp.value;
+    }
+
+}
+
+//so we have done the same thing with dequeue as in stacks 
+deque is same as pop() from stack (which popped from beginning of list)
+Difference is enqueue is adding to end of the list whereas 
+stack has added to teh beginning with its push 
+
+can either add to end and remove from beginning 
+Or add to beginning and remove from end 
+
+En queue is adding to end 
+De queue is removing from beginning 
+
+Big O of queues 
+Insertion O(1)
+Removal O(1)
+Searching O(N)
+Access O(N)
+
+Queues are FIFO data structure, all elements are first in first out 
+Quees are useful for processing tasks and are foundational for more complex data structures 
+
+Not just a novelty to show us, they will be resurfacing
+Insertion and Removal can be done in O(1)
+
+kdljddjk
 
 
 
