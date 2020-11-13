@@ -3653,6 +3653,31 @@ Nodes in the really wide tree
 
 
 Time complexity of breadth first versus depth first is the same O(n)
+
+When using DFS InOrder 
+We get all the nodes from lowest to highest 
+    Can end up with a set of all nodes in their order if that's how they are entered'
+    Its kind of a stretch that is a side order of a DFS InOrder binary search SVGComponentTransferFunctionElement
+
+DFS PreOrder 
+    Can be useful if trying to clone or duplicate a tree so you can store 
+    It in a file or reacreate it from a serialized structure 
+    Rehydrate it and iterate through the lsit and makeit a child.next
+    PreOrder reconstructs the tree 
+
+In the end of the day, very easy to change between INOrder, PreOrder
+Bigger concern is breadth first versus depth first 
+
+Trees are a non linear data structures that ocntain a root and child nodes
+Binary trees can have values of any typeof, but at most two children for each parent 
+Bianry search treees are a more specific vision of binary trees where every node to the left of a parent 
+is less than it's value and every node to the right is great '
+We can search through Trees using BFS and DFS 
+
+
+    
+
+
 kdljddjk
 
 
