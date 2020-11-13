@@ -3201,6 +3201,121 @@ Quees are useful for processing tasks and are foundational for more complex data
 Not just a novelty to show us, they will be resurfacing
 Insertion and Removal can be done in O(1)
 
+Trees
+Classic data structure taught in CS classes throughout the world
+A step up from Linked Lists, but also a bit more interesting
+Define what a tree is
+Compare and contrast trees and lists
+Explain the differences between trees, binary tress, and binary search trees 
+
+3 categories 
+Implement operations on binary search trees 
+
+BST, Binary Search Tree 
+
+First 
+What is a tree?
+Tree is a data structure that consists of nodes in a parent/child relationship 
+Branches from one node to another node 
+Branching structures, hence the name tree 
+Branch splits, and that branch can split off of main, original branch 
+Really like a tree upside down with branches going down 
+
+Lists - linear //only one path, one line through our datastructure 
+Trees - nonlinear //they can branch, we can have more than one pathway in a tree
+
+A singly linked list is a special case of a tree 
+2 to 12 to 11 
+Some rules for Trees 
+All arrows have to point down in a tree 
+Only one root for the tree, cannot have two roots 
+
+Root - top node in a tree 
+Child - a node directly connected to another node when moving away from the Root 
+Parent - the converse notion of a child
+Siblings - a group of nodes with the same parent
+Leaf - node with no children 
+Edge - The connection betweene one node and another. 
+
+Lots of different applications 
+HTML DOM 
+Parent/Child relationship between HTML elements 
+Browser has response, parses it 
+Chrome get an interactive way of viewing different nodes 
+Corresponding JS object for each of those nodes 
+Document.body 
+It's actually a body that has many different things and you can look at a list of children '
+
+DOM is a tree structure 
+Network routing is also a tree structure 
+Tic tac toe is tree structure, the game board as it changes
+Artificial Intelligence is a tree structure  
+Computers with folders in operating system is a tree
+
+Data that contains a lot of duplicates 
+Majority is not a good way of putting it 
+Tons of trees 
+Heaps 
+
+Binary Search Trees are trees with at most 2 children 
+BST 
+Sorted in a particular order 
+BST's are used to store data that can be compared, taht is sortable'
+Could be stirngs, could be any other piece of data that is comparable. 
+This is how they work. Take any node on a tree, all items that are less than this node are located 
+to the left of it
+Any item that is greater than it is located to the right 
+6 node all numbers left to it are less than it 
+to right of 6 are all numbers greater than it 
+
+BST
+Every parent node has at most two children 
+Every node to left of parent node is always less than parent 
+Every node to right of parent node is always greater than node 
+
+If root node has 3 children, then it is not a binary search tree 
+
+class Node {
+    constructor(value){
+        this.value = value;
+        this.left = null;
+        this.right = null;
+    }
+}
+
+class BinarySearchTree {
+    constructor(){
+        this.root = null;
+    }
+}
+
+let tree = new BinarySearchTree();
+tree.root = new Node(10);
+tree.root.right = new Node(15);
+tree.root.left = new Node(7);
+tree.root.left.right(9);
+
+Insert pseudocode
+
+Steps iteratively or recursively 
+iteratively is easier
+Create a new node 
+Starting at the root
+    Check if there is a root,, if not, the root now becomes that new node 
+    If there is a root, check if the value of the new node 
+        is greater than or less than the value of the root 
+    If it is greater 
+        check to see if there is a node to the right 
+            If there is, move to that node and repeat these steps
+            If there is not, add that node as the right property
+    If it is less
+        Check to see if there is a node to the left
+            If there is, move to that node and repeat these steps
+            If there is not, add that node as the left property 
+
+    
+
+
 kdljddjk
 
 
