@@ -3385,6 +3385,274 @@ B/c there are some binary search tree configurations that are very slow
 Let's say a tree becomes a linked list' Would be O(n)
 Fix would be to change the root so values to the rigth and left are larger and smaller than it 
 
+To traverse a tree, very easy.
+From one place to another place
+No order, no decision, go from X to You. 
+Want to know if 43 is in this list. Go here, then here until you've found it
+
+Visit every node once '
+If I want to know if a number is in a tree, would have to visit every node 
+Since the list is not ordered .next
+Do we go all the way down to the end 
+How do we decide to move down the tree 
+
+4 commonly known approaches 
+This session will use recursion more than any other session 
+
+Two main approaches:
+Breadth-first search.
+Depth-first search. 
+
+BFS start at beginning, work across the tree first . 
+Depth first search, goes does the tree first, then coming back up. 
+
+DFS is In order. starting at bottom, go up one node then find it's children, ' then move up 
+or DFS is called PreOrder, starts at root, goes down one side. Then goes down other side of the root .
+DFS has Post Order, start at bottom and work way up. 
+
+There are so many ways to visit every node in a tree
+Really just trees in general but we will be looking at 
+binary search codeeto make this work 
+
+Breadth first Search (BFS) or Depth First Search (DFS)
+We want to visit every node on the same level before we look at a child 
+
+Could be working with a tree that is super deep and wide. 
+
+BFS Steps Iteratively  
+Create a queue (this can be an array) and a variable to store rthe values of the nodes visisted 
+Place the root node in the queue 
+Loop as long as there is anything in the queue 
+Dequeue a node from the queue and push the value of the node into the variable that stores the nodes
+If there is a left property on the node dequed add it to the queue 
+If there is a right property on the node dequeued - add it to the aqueue 
+Return the variable that stores the values 
+
+    //horizontal before we go vertical 
+    BFS(){
+        var data = [],
+            queue = [],
+            node = this.root
+        queue.push(node)
+        while(queue.length){
+            node = queue.shift();
+            data.push(node.value);
+            if(node.left) queue.push(node.left);
+            if(node.right) queue.push(node.right);
+        }
+        return data;
+    }
+
+Depth First Search
+Traverse nodes vertically down to the end of the tree 
+Before visiting sibling nodes . 
+We want to visit them in the order of going to the root node fireast 
+Traverse the left, then 
+Start at top, explore left side, visit left node sibling and right node sibling 
+Then we got back to root and look at right side of root node, then look and left side and right side of the nodes 
+
+Pseudocode for DFS PreOrder
+Create a variablae to store the values of nodes visisted 
+Store the root of the BST in a variable called current 
+Write a helepr function which accepts a node    
+    Push the value of the ndoe to the variable that stores the values
+    If the node has a left property, call the helper function with the left property on the node 
+    If the node has a right property, call the helper function with the right property on the node 
+Invoke the helper function with the current variable 
+Return the array of values 
+)
+
+//we visit the node first, then left and right
+DFSPreOrder(){
+    let data = [];
+    let current = this.root;
+    function traverse(node){
+        data.push(node.value)
+        if(node.left) traverse(node.left);
+        if(node.right) traverse(node.right);
+    }
+    traverse(current);
+    return data;
+}
+
+DFS - Post order 
+//we look at an entire branch left and right, then we visit order 
+//We are going to go all the way down the left, 
+//then we add the node 
+//Go up a node, then go down all the way on the right 
+//then we add this node.
+//In post order, the root is the last thing that is visited .
+Practically this means we just change the order of the code 
+
+DFS Post Order Pseudocode 
+Create a variable to store the values of nodes visited 
+Store the root of the BST in a variable called current 
+Write a helper function whcih accepts a node 
+    If the node has a left property, call the helper function with the left preoprty on the node 
+    If the node has a right proeprty, call the helepr function with the rgiht proeprty on the node
+    PUsh the value of the node to the variable that stores the values 
+    Invoke the helper function with the current variabl
+Return the array of values 
+
+DFSPostOrder(){
+    let data = [];
+    function traverse(node){
+        if(node.left) traverse(node.left);
+        if(node.right) traverse(node.right);
+        data.push(node.value)
+    }
+    traverse(this.root);
+    return data;
+}
+
+DFS In Order
+Start at bottom left, go up a parent, find parents right 
+Then go up to parent 
+Then we go down from root to right side 
+
+DFS In Order Pseudocode 
+Create a variable to store the values of nodes visited 
+Store the root of the BST in a variable called current 
+Write a helper function whcih accepts a node 
+    If the node has a left property, call the helper function with the left preoprty on the node 
+Only difference:  PUsh the value of the node to the variable that stores the values 
+    If the node has a right proeprty, call the helepr function with the rgiht proeprty on the node
+    Invoke the helper function with the current variabl
+Return the array of values 
+
+DFSInOrder(){
+    let data = [];
+    function traverse(node){
+        if(node.left) traverse(node.left); 
+                //could also do node.left && traverse(node.left)
+        data.push(node.value)
+        if(node.right) traverse(node.right);
+    }
+    traverse(this.root);
+    return data
+}
+
+In every depth first search, going vertically first .
+
+class BinarySearchTree {
+    constructor(){
+        this.root = null;
+    }
+    insert(value){
+        var newNode = new Node(value)
+        if(this.root===null) {
+            this.root = newNode
+            return this
+        } else {
+            let current = this.root;
+            while(true){
+                if(value===current.value) return undefined;
+                if(value < current.value){
+                    if(current.left === null){
+                        current.left = newNode;
+                        return this;
+                    } else {
+                        current = current.left;
+                    }
+                } else if(value > current.value) {
+                    if(current.right === null){
+                        current.right = newNode;
+                        return this;
+                    } else {
+                        current = current.right;
+                    }
+                }
+            }
+        }
+    }   
+    find(value){
+        if(this.root === null) return false;
+        let current = this.root,
+             found = false;
+        while(current && !found){
+            if(value < current.value){
+                current = current.left;
+            } else if (value > current.value) {
+                current = current.right;
+            } else {
+                found = true;
+            }
+        }
+        if(!found) return undefined;
+        return current;
+    }
+    //horizontal before we go vertical 
+    BFS(){
+        var data = [],
+            queue = [],
+            node = this.root
+        queue.push(node)
+        while(queue.length){
+            node = queue.shift();
+            data.push(node.value);
+            if(node.left) queue.push(node.left);
+            if(node.right) queue.push(node.right);
+        }
+        return data;
+    }
+    DFSPreOrder(){
+        let data = [];
+        let current = this.root;
+        function traverse(node){
+            data.push(node.value)
+            if(node.left) traverse(node.left);
+            if(node.right) traverse(node.right);
+        }
+        traverse(current);
+        return data;
+    }
+    DFSPostOrder(){
+        let data = [];
+        function traverse(node){
+            if(node.left) traverse(node.left);
+            if(node.right) traverse(node.right);
+            data.push(node.value)
+        }
+        traverse(this.root);
+        return data;
+    }
+
+DFSInOrder(){
+    let data = [];
+    function traverse(node){
+        if(node.left) traverse(node.left);
+        data.push(node.value)
+        if(node.right) traverse(node.right);
+    }
+    traverse(this.root);
+    return data
+}
+}
+
+BFS versus DFS, which one is better and which one should you use?
+It depends on your situation. 
+
+Breadth First Search in general versus Depth First Search in general 
+It depends on the tree. 
+Tree that is fully fleshed out.
+If working with breadth first search
+Queue storing all of the nodes we have yet to visit
+We are going to visit this node and add left and right to the queue 
+
+
+Breadth first search, in a large, wide tree.
+is worse for memory b/c keeping track of so many nodes 
+Depth first is taking up less space in a large wide tree 
+B/c it goes down only 3/4 levels of space in memory
+
+Breadth first search is great for memory  in a Singly Linked List
+    Only one piece of memory stored as going to a new node on each level 
+
+In general depth first trees are seen more often as theere are more 
+Nodes in the really wide tree 
+
+
+Time complexity of breadth first versus depth first is the same O(n)
 kdljddjk
 
 
