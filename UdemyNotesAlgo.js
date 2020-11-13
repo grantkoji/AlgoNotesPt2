@@ -3675,10 +3675,176 @@ is less than it's value and every node to the right is great '
 We can search through Trees using BFS and DFS 
 
 
-    
+Binary Heaps 
+
+Heaps are another category of trees
+Everything that applies to trees in general applies to Heaps
+
+There are many types of Heaps
+Fibonacci heaps, left heap. 
+The one we're focusing on is a binary heap'
+Two types of binary heaps that were going to talk about 
+Compare and contrast min and max heaps 
+implement a max heap 
+
+Binary Heap 
+is very similar to a binary search trule with some different values 
+IN a MaxBinaryHeap, aprent nodes are always larger than child nodes 
+IN a MinBinaryHeap, parent nodes are always smaller than children 
+
+Unlike a binary search tree, there is no order to left versus the right 
+No order to whole tree, just that they are smaller than parent .
+Both children are smaller than their parent
+There is no relationship represented in a different way . 
+
+Max Binary Heap
+Each parent has at most two child nodes 
+The value of each parent node is always greater than its child nodes 
+In a max Binary Heap, the parent is greater than the children, but htere are no
+guarantees between sibling node 
+A binary heap is as compact as possible. All the children of each node 
+are as full as they can be and left children are filled out first 
+
+Max binary heap to left and right are smaller numbers
+Not necessarily second largest numbers in heap 
+
+A min binary heap has smallest children up top 
+And children are larger than parent on a lower level.
+
+Why do we need to know this?
+Binary Heaps are used to implement Priority Queues, which are very commonly used 
+data structures .next
+Can also assign an importance level
+
+They are also used quite a bit, with graph traversal algorithms 
+
+Heaps are using a data structure that already exists 
+
+For any index of an array n...
+The left child is stored at 2n + 1
+The right child is at 2n + 2
+
+Take index 6 and find its children by multiplying by two and adding 1 
+We add 2 or 1 more to get 14. 
+Or let's take this index, 4, the value of 12' its children multiply 4 by 2 and add d 1 
+That's the actual way to find the child index of a parent' 
+
+2 children per each node and need a way to flatten it and store it 
+
+working backwards, have a child node, we want to know its parent 
+
+Index 4, index 12, index 5
+If we have a child at index n 
+Its parent is at index Math.foor((n-1)/2) 
+
+Base structure for our MaxBinaryHeap class 
+Defining our class 
+Class Name: 
+    MaxBinaryHeap 
+Properties:
+    values = []
+
+Don't need to make a node class'
+All I need is an empty array [] to start 
+
+Will be storing things in this values array 
+Store them in an array and use their indexes to have their values in the array 
+To store as a parent, put it into specific indices 
+
+Adding to a MaxBinaryHeap
+Add to the end
+Bubble Up
+
+We swap it until it finds its final resting place 
+Values will bubble up to the correct spot 
+
+Children are at index 5 and 6 
+
+When inserting a new value, Look at its parent, then if its bigger than the parent, you swap them
+Then compare it to its new parent, and if bigger, swap again 
+
+Keep swapping until either no longer larger than its parent or if 
+it's the new root node parent ' at the top
+
+Insert Pseudocode 
+PUsh the value into the values propertoy on the heap
+Bubble the value up to its correct spot!
+    Create a variable called index which is the length of the values property -1
+    Create a variable called parentIndex which is the floor of (index-1)/2
+    Keep looping as long as teh values element at parentIndex is less than the values element at the child index 
+        Swap the value of the values element at the parentIndex with th value of the element property 
+        at the child index 
+        Set the index to be the parentIndex, and start over
+
+Also account for stop when at the top of the heap. 
+bubbleUp(){
+    let index = this.values.length - 1;
+    const element = this.values[index] 
+    while(while index > 0){
+        let parentIdx = Math.floor((index-1)/2);
+        let parent = this.values[parentIdx]
+        if(element <= parent) break;
+        this.values[parentIdx] = element;
+        this.values[index] = parent;
+        index = parentIdx;
+    }
+}
+
+Removing from a heap 
+Remove the root
+Replace with the most recently added 
+Adjust (sink down)
+    The procedure for deleting the root from the heap 
+    (effectively extracting the maximum element in a max-heap or the 
+        minimum element in a min-heap) and restoring the properties is called 
+        down-heap (also known as bubble-down, percolate=down, sift-down, trickle down, 
+            heapify-down, cascade-down, and extract-min/max)
+
+Removing pseudocode (also called extractMax)
+    Swap the first value in the values property witht eh last one 
+    Pop from the values property, so you can return the value at the end 
+    Have the next root "sink down" to the correct spot 
+    Your parent index starts at 0 (the root)
+    Find the index of the left child: 2 * index + 1 (make sure its not out of bounds)
+    Find the index of the right child: 2 * index + 1 (make sure its not out of bounds)
+    If the left or right child is greater than the element...swap. If both the left and right children are larger, 
+    swap with the largest child. 
+    The child index you swapped to now becomes the new parent index.
+    Keep looping and swapping until neither child is larger than the leemnt 
+
+    extractMax(){
+        const max = this.values[0]
+        const end = this.values.pop()
+    }
+
+class maxBinaryHeap(){
+    constructor(){
+        this.values = [];
+    }
+    insert(element){
+        this.values.push(element);
+        this.bubbleUp();
+    }
+    bubbleUp(){
+        let index = this.values.length - 1;
+        const element = this.values[index] 
+        while(while index > 0){
+            let parentIdx = Math.floor((index-1)/2);
+            let parent = this.values[parentIdx]
+            if(element <= parent) break;
+            this.values[parentIdx] = element;
+            this.values[index] = parent;
+            index = parentIdx;
+        }
+    }
+
+}
+
+let heap = new MaxBinaryHeap();
+heap.insert(55);
 
 
-kdljddjk
+;kdljddjk
 
 
 
