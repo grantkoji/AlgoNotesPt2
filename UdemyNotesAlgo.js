@@ -3811,11 +3811,54 @@ Removing pseudocode (also called extractMax)
     swap with the largest child. 
     The child index you swapped to now becomes the new parent index.
     Keep looping and swapping until neither child is larger than the leemnt 
+    Return the old root 
 
     extractMax(){
-        const max = this.values[0]
-        const end = this.values.pop()
+        const max = this.values[0];
+        const end = this.values.pop();
+        //EDGE CASE 
+        if(this.values.length > 0){
+            this.values[0] = end;
+            //trickle down
+            this.sinkDown();
+        }
+        return max;
     }
+    sinkDown(){
+        //We're going to start at index of 0 and find its children
+        let idx = 0; 
+        const length = this.values.length;
+        const element = this.values[0];
+        while(true){
+            let leftChildIdx = 2 * idx + 1
+            let rightChildIdx = 2 * idx + 2
+            let leftChild, rightChild
+            let swap = null;
+
+            if(leftChildIdx < length){
+                leftChild = this.values[leftChildIdx];
+                if(leftChild > element){
+                    swap = leftChildIdx;
+                }
+            }
+
+            if(rightChildIdx < length){
+                rightChild = this.values[rightChildIdx];
+                if(
+                    (swap === null && rightChild > element) || 
+                    (swap !== null && rightChild > leftChild)
+                ) {
+                    swap = rightChildIndex
+                }
+            }
+            if (swap === null) break;
+            this.values[idx] = this.values[swap];
+            this.values[swap] = element;
+            idx = swap;
+                //Rather than 0 initially started, going to put swap where the index in which it occurs 
+        }
+    }
+
 
 class maxBinaryHeap(){
     constructor(){
