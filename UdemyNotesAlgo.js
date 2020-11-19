@@ -3886,7 +3886,39 @@ class maxBinaryHeap(){
 let heap = new MaxBinaryHeap();
 heap.insert(55);
 
+What is a priority queue
+A data strucvture where each element has a priority
+Elements with higher priorites are served before elements with lower priorities 
 
+Example is person with a gunshot wound served first in hospital 
+
+Naive version would go through the entire list of elements and see what the highest priority 
+item is 
+Person walks in with low fever 
+We move from root of our heap. 
+Root it who gets help first. 
+Someone gets in with higher priority, will get put into the root 
+If he has a lower priority, he will be dropped down 
+
+Heap has time complexity of O(1) whereas naive version is O(n)
+Class Name: Node 
+Properties: 
+val
+priority 
+Node class
+Each number has a val 
+Each node has a priority that is the value we use when we actually comapre them 
+Once we remove from the top, we need to sink down and compare using its priority 
+Also will have a min Binary Heap instead of a max. Unix, a lower value is going to be 
+served first 
+Priority 1 is the highest priority 
+
+Write a Min Binary Heap - lower number means higher priority
+Each Node has a val and a priority. Use the priority to build the heap.nextEnqueu method acceptws a value and prirootiy, makes a new node, 
+and puts it in ther ight spot based off of its prirootiy
+Dequeue method removes root element, returns it, and rearranges heap using priortiy
+
+Instead, we use a heap: 
 ;kdljddjk
 
 
