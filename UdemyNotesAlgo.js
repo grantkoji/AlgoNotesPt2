@@ -3919,6 +3919,82 @@ and puts it in ther ight spot based off of its prirootiy
 Dequeue method removes root element, returns it, and rearranges heap using priortiy
 
 Instead, we use a heap: 
+
+class Node {
+    constructor(val, priority){
+        this.val = val;
+        this.priority = priority;
+    }
+}
+class PriorityQueue(){
+    constructor(){
+        this.values = [];
+    }
+    enqueue(value, priority){
+        let newNode = new Node(value, priority)
+        this.values.push(newNode);
+        this.bubbleUp();
+    }
+    bubbleUp(){
+        let index = this.values.length - 1;
+        const element = this.values[index] 
+        while(while index > 0){
+            let parentIdx = Math.floor((index-1)/2);
+            let parent = this.values[parentIdx]
+            if(element.priority <= parent.priority) break;
+            this.values[parentIdx] = element;
+            this.values[index] = parent;
+            index = parentIdx;
+        }
+    }
+    dequeue(){
+        const max = this.values[0];
+        const end = this.values.pop();
+        //EDGE CASE 
+        if(this.values.length > 0){
+            this.values[0] = end;
+            //trickle down
+            this.sinkDown();
+        }
+        return max;
+    }
+    sinkDown(){
+        //We're going to start at index of 0 and find its children
+        let idx = 0; 
+        const length = this.values.length;
+        const element = this.values[0];
+        while(true){
+            let leftChildIdx = 2 * idx + 1
+            let rightChildIdx = 2 * idx + 2
+            let leftChild, rightChild
+            let swap = null;
+
+            if(leftChildIdx < length){
+                leftChild = this.values[leftChildIdx];
+                if(leftChild.priority > element.priority){
+                    swap = leftChildIdx;
+                }
+            }
+
+            if(rightChildIdx < length){
+                rightChild = this.values[rightChildIdx];
+                if(
+                    (swap === null && rightChild.priority > element.priority) || 
+                    (swap !== null && rightChild.priority > leftChild.priority)
+                ) {
+                    swap = rightChildIndex
+                }
+            }
+            if (swap === null) break;
+            this.values[idx] = this.values[swap];
+            this.values[swap] = element;
+            idx = swap;
+                //Rather than 0 initially started, going to put swap where the index in which it occurs 
+        }
+    }
+
+}
+
 ;kdljddjk
 
 
