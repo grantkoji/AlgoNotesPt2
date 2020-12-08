@@ -1408,12 +1408,15 @@ function insertionSort(arr){
     return arr
 }
 
-Bubble sort:
-Best case O(n), Avg O(n^2), Worst O(n^2), Space complexity O(1)
-Insertion Sort:
-Best case O(n), Avg O(n^2), Worst O(n^2), Space complexity O(1)
-Selection Sort:
-Best case O(n^2), Avg O(n^2), Worst O(n^2), Space complexity O(1)
+
+
+// Bubble sort:
+// Best case O(n), Avg O(n^2), Worst O(n^2), Space complexity O(1)
+// Insertion Sort:
+// Best case O(n), Avg O(n^2), Worst O(n^2), Space complexity O(1)
+// Selection Sort:
+// Best case O(n^2), Avg O(n^2), Worst O(n^2), Space complexity O(1)
+
 
 
 Merge Sort
@@ -1450,11 +1453,13 @@ Functions are waiting for other functions to occur
 If you have a function called first then have a second function
 Theres a thing called a call stack
 A data structure called a stack
-Recursive functions keep pushing a new function onto the call stack over and over again. When a function is invoked, it is placed on the top of the call stack. When a function ends the compiler will remove the function from the stack. You put something on top, when you remove something you remove from the top (removal is a pop in JavaScript).
+Recursive functions keep pushing a new function onto the call stack over and over again. When a function is invoked, it is placed on the top of the call stack. 
+When a function ends the compiler will remove the function from the stack. 
+You put something on top, when you remove something you remove from the top (removal is a pop in JavaScript).
 What I would want to do is change the list and chop off one number
 at the beginning and try to do the same thing until
 We hit an empty list
-ase case almost always involves conditional and it returns something
+Base case almost always involves conditional and it returns something
 There is an endpoint .ß
 
 
@@ -1517,37 +1522,143 @@ While there are still values we havent looked at...array
 
 
 function merge(arr1, arr2){
+    //create an empty array
     let results = []
+    //index for arr1
     let i = 0
+    //index for arr2
     let j = 0
+
+    //until we finish iterating through one of the two arrays
      while(i < arr1.length && j < arr2.length){
          if(arr2[j] > arr1[i]){
-             results.push(arr1[i]);
+            //push the smaller value into the results array 
+            results.push(arr1[i]);
              i++;
          } else {
+             //push the smaller value into the results array
              results.push(arr2[j]);
              j++;
          }
      }
+     //if arr1 still has values in it, push the remaining values into 
+     //the results array
      while (i < arr1.length) {
          results.push(arr1[i]);
          i++
      }
+    //if arr2 still has values in it, push the remaining values into 
+     //the results array
      while (j < arr2.length){
          results.push(arr2[j]);
          j++
      }
+    //return the results array, now with all values pushed into it in 
+    //numerical order from smallest to largest
     return results; 
 }
 
-function mergeSort(arr){
-    if(arr.length <=1) return arr;
-    let mid = Math.floor(arr.length/2);
-    let left = mergeSort(arr.slice(0,mid));
-    let right = mergeSort(arr.slice(mid))
-    return merge(left, right)
+Exploits the fact that arrays of 0 or 1 element are always sorted .
+// MergeSort involves recursively breaking up the array into halves until you have arrays that are empty or have one element. Keep using .slice() recursively until the array is empty or one element.
 
+function mergeSort(arr){
+    //base case if array has one or zero elements, return that array
+    if(arr.length <=1) return arr;
+    
+    //keep splitting up arrays until length of 1 or 0
+    //mid point of the array
+    let mid = Math.floor(arr.length/2);
+    //left side from 0 element to one before mid point
+    let left = mergeSort(arr.slice(0,mid));
+    //right side from mid point to end
+    let right = mergeSort(arr.slice(mid))
+
+    //return the results of placing left and right into our merge function
+    return merge(left, right)
 }
+
+                 mergeSort([24, 10, 76, 73])
+
+                    //set up of recursive functions
+
+            //first left            //first right
+            [24, 10]      merge     [76, 73]
+
+        mergeSort([24, 10])         mergeSort([76, 73])    
+    
+//second left    //second right //second left     //second right
+    [24]    merge   [10]           [76]     merge     [73]
+
+mergeSort([24])    mergeSort([10])  mergeSort([76])    mergeSort([73])
+    //left            //right          //left               //right
+
+                        //calculation of merges
+    merge([24], [10])                   merge([76], [73])
+        [10, 24] /*because 10 < 24*/        [73, 76] //because 73 < 76
+            //left                             //right
+
+                    merge([10, 24], [73, 76])
+                    //first iteration in merge function
+                    results = [10]
+                    left [24]
+                    right [73, 76]
+                    //second iteration in merge function
+                    results = [10, 24]
+                    left []
+                    right [73, 76]
+                    //left is empty, push in right into results to complete
+                    results = [10, 24, 73, 76]
+                    //completed, merged, and sorted array
+
+                    O(n) is the length of the array     
+                    _______________________________ 
+                   | [8] [7] [6] [5] [4] [3] [2] [1]
+       O(log n)    | [7, 8] [5, 6] [3, 4] [1, 2]
+       depth or    | [5, 6, 7, 8] [1, 2, 3, 4]         
+    decompositions | [1, 2, 3, 4, 5, 6, 7, 8]
+
+                Length of array = 8 = n
+                log base 2 of 8 = 3 = log n
+
+
+        
+merge([2, 15, 60], [3, 25, 40, 90])
+results =[]
+[2, 15, 60] [3, 25, 40, 90]
+//iteration 1
+//compare 2 and 3, 2 is smaller, push in 2
+results = [2]
+
+[15, 60] [3, 25, 40, 90]
+//iteration 2
+//compare 15 and 3. 3 is smaller, push in 3
+results = [2, 3]
+
+[15, 60] [25, 40, 90]
+//iteration 3
+//compare 15 and 25, 15 is smaller, push in 15
+results = [2, 3, 15]
+
+[60] [25, 40, 90]
+//iteration 4
+//compare 60 and 25, 25 is smaller, push in 25
+results = [2, 3, 15, 25]
+
+[60] [40, 90]
+//iteration 5
+//compare 60 and 40, 40 is smaller, push in 40
+results = [2, 3, 15, 25, 40]
+
+[60] [90]
+//iteration 6
+//compare 60 and 90, 60 is smaller, push in 60
+results = [2, 3, 15, 25, 60]
+
+[] [90]
+//arr1 is empty, push in remaining values of arr2
+results = [2, 3, 15, 25, 40, 60, 90]
+
+
 
 mergeSort([10, 24, 76, 73, 1, 9])
 
@@ -1558,8 +1669,8 @@ arr.slice
 Math.floor
 
 Merge Sort
-Time Complexity Best case O(n logn)
-Time Complexity AVerage case O(n log n)
+Time Complexity Best case O(n log n)
+Time Complexity Average case O(n log n)
 Time Complexity Worst case O(n log n)
 Space complexity O(n)
 
@@ -3998,6 +4109,212 @@ class PriorityQueue(){
 ;kdljddjk
 
 
+Front End People
+Understnading what it is you want to do 
+Internship with business insider 
+Product Managers 
+Sprint planning 
+Invovled in whole process 
+Team that doesnt practice agile 
+Reserach company
+Builds products that sees if things are possible
+Lets build for government 
+Is it possible 
+We did it over here 
+SCRUMS at the end of the day 
+Sprint planning 
+Everyone () working on different problems 
+Something he didnt 
+What are you sprints like 
+
+Tell me about your mergine process 
+How do we merge this in 
+Are we doing PRs 
+whose doing code review 
+
+Interviews are so much more focused 
+How a company is run 
+
+Took him until January/July to get jobs 
+Some people got jobs before 
+
+People who got jobs before are beforehand 
+
+Name Em needs better CSS 
+Better CSS Bootstrap. 
+Go back to it, touch it up. 
+Have a list thats unordered instead of ordered
+Structure it so theyre on cards 
+Think its a great app
+Want to know if its styled right 
+Get it looking nice 
+
+Features/features features 
+Had an interview where he did React stuff 
+How would you style this 
+I would just ask 
+What he wanted to see 
+When you do a list of things always add a little padding on 
+it.
+Add a little margin 
+Add a list on the side 
+
+Thats why he wants to the pixel do you want things 
+CSS for 
+Learn X and Y 
+Check that out 
+Had to learn a new 
+Groovy is language that hes uses 
+compiles to Java for spring security for all government projects 
+
+Vue.js written by Evan Yu 
+Used to work for Micronaught 
+Started to do it for one person 
+
+That is just reading documentation 
+Anytime you are working with javascript 
+javascript is 
+
+Next company is PHP
+
+Learn X and Y 
+I keep You dont know javascript yet 
+
+It was supposed to be a sript not a language 
+Gritty into how javascript runs 
+Series with getting started 
+Const let and var 
+
+Reallly dig into javascript in a way that most people dont 
+Danny went to Swat for computer science 
+Hes always done front end SPA's 
+company hes at now does dom manipulation 
+view 
+Most people arent goign to be that helpful 
+
+Worthmaking those connections just in case 
+Met a guy who is very much on the in with capital investing 
+Led to two interviews that he bombed 
+
+Fibonacci 
+give me 4, give me 4th 
+Did it recursively 
+
+REsource question
+Structure and intepretation of programming 
+Computer science principles. 
+May not come up but really good to know 
+
+https://mitpress.mit.edu/sites/default/files/sicp/full-text/book/book-Z-H-4.html
+
+We are missing it 
+
+Learn recursion 
+Rarely 
+He worked at Datadog 
+VTS real estate unicorn 
+
+First one where speace and time complexity 
+
+Recursion 
+Bc on inside with start ups. 
+Hash tables 
+recursion 
+Business insider there was a set of 
+Reverse a string 
+Not always 
+
+A to do list app for React 
+Straight out of bootcamp question 
+
+Heres this data object and a class lets just pull this 
+out for the class 
+
+Real estate company 
+
+Heres this class of batch 
+What we hae to do with it 
+
+Object oriented principles 
+Companies moving toward do you understanding 
+
+Blocking and nonblocking 
+Async calls 
+
+Honesty is one of the best things to 
+
+Not sure can you give me an example 
+You know like an api call 
+
+Async await, heres how it works and here is how Id use
+
+Spamming resume 
+Personalizing things 
+Black and recruiter was black too 
+She immediately reach out to 
+Personalized things
+Personally doesnt apply to twitter and feng companies 
+Twitter an hour after they posted 
+They could call you but engineers they have are going to 
+be good on paper 
+Dreaming in code 
+
+50 employees
+got a development team and have senior developers 
+50-100 employees 
+
+If you leave new york, youll get a job 
+
+Lot of government work around DC 
+So you need something 
+
+Hey, melanie, 
+Would love to discuss 
+I havebuilt full stack apps. 
+Passionate about building. 
+
+Just b/c you reached out then she moved over. 
+
+Paid for premium to send messages 
+
+Stack Overflow is where everything starts 
+
+Material Design 
+Go to stack overflow first 
+Specific libraries issues will 
+Show up in GitHub Issues 
+Search for google 
+IN results always look up issues page 
+for libraries but not for 
+
+Every single developer in the country uses 
+Javascript
+Really want to have my core concepts down on that 
+Just to stand out
+
+People look for Ruby 
+People find a job with Ruby and grow with that 
+
+Back end services not always just databases 
+Just a lot of services you are building into the api itself 
+
+Getting in the door is a front end developer
+Shortest answer 
+Every recruiter goes through a machine 
+
+White text on a pdf pages 
+from the jd 
+
+CSS javascript
+HTML 
+CSS animations in my thing 
+React will make a spinner for me now 
+If I can make some animations 
+CSS animations learning the pseudo elements are really important 
+
+Will set you 
+CSS animations 
+News with ticker spitting out with raw css 
 
 
 
