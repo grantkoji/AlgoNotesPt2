@@ -1719,6 +1719,60 @@ function mergeSort(array){
 
 
 
+fggsgfgf
+
+
+Ch 92 Quick sort: 
+Like merge sort exploit fact that arrays of 0 or 1 element are always sorted
+Works by selecting one element (called the 'pivot') and finding the index here the pivot 
+should end up in the sorted array 
+
+[5, 2, 1, 8, 4, 7, 6, 3]
+Take 5 
+[3, 2, 1, 4, 5, 7, 6, 8]
+We know 5 is in the correct spot 4
+Now we repeat process on left side 
+Take 3 
+[2, 1, 3, 4, 5, 7, 6, 8]
+Take 2
+Now we repeat process 
+[1, 2, 3, 4, 5, 7, 6, 8]
+Take 1 
+Take 4 
+
+We keep track of which elements are less than 11 
+swap 
+        
+Pivot should be the median value in the data set ";
+Pivot Pseudocode "
+3 arguments: array, start index (default 0), end index (default array.length -1) 
+Grab pivot from start of array
+Store pviot index in a variable 
+Loop through array from start until end 
+    If pivot > current element, imcrement the pivot index variable and then 
+    swap the current element and then wap the current element with the element 
+    as the pivot index
+    swap the starting element (i.e. the pivot) with the pivot index 
+    dljdfjakldja;jf
+
+function pivot(arr, start=0; end=arr.length -1){
+    var pivot = arr[start];
+    var swapIdx = start;
+    function swap(array, i, j){
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+
+    for (var i = start + 1; i < arr.length; i++){
+        if(pivot > arr[i]){
+            swapIdx++;
+            swap(arr, swapIdx, i)
+        }
+    }
+    swap(arr, start, swapIdx)
+    return swapIdx
+}
 
 
 
