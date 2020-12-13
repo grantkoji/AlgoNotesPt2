@@ -4411,6 +4411,89 @@ Will set you
 CSS animations 
 News with ticker spitting out with raw css 
 
+Good hashing algorithm 
+()
+Hash tables very fast, why we use them commmonly 
+Python has Dictionaries 
+JS has Objects and Maps
+    Objects have some restrictions, but are basically hash tables 
+Java, Go, and Scala have Maps 
+Ruby has hashes 
+
+Hash tables dont need to be a string colors["cyan"]
+
+To implement a hash table, we'll be using an array'
+
+In order to look up values by key, we need a way to convert keys into valid array indices 
+
+A function that performs this task is called a hash function 
+
+Hashing conceptually 
+Pink -> 0
+Insert pink, should give me some number zero through nine 
+
+Enter 
+hash("hello!")
+get a number with a lot of digits 
+
+Good hash is 
+Fast (i.e. constant time)
+Doesnt cluster outputs at specific indices, but distributes uniformly 
+Derministic (same input yields same output)
+
+
+"hi".charCodeAt(0)
+104 
+
+"hi".charCodeAt(1)
+105
+
+String only hash 
+function hash(key, arrayLen){
+    let total = 0;
+    for (let char of key){
+        //map "a" to 1, "b" to 2, "c" to 3, etc.
+        let value = charCodeAt(0) - 96
+        total = (total + value) % arrayLen;
+    }
+    return total 
+}
+
+Not constant time - linear in key length 
+Largest string leads to larger hash 
+Could be a little more random
+    //Our data could be clustered relatively easily 
+
+//loop art most 100 characters 
+//if have two strings, thats okay, theyll collide 
+//we want array length to be a prime number 
+    String only hash 
+    function hash(key, arrayLen){
+        let total = 0;
+        let WEIRD_PRIME = 31;
+        for (let i = 0; i<Math.min(key.length, 100); i++){
+            let char = key[f]
+            //map "a" to 1, "b" to 2, "c" to 3, etc.
+            let value = charCodeAt(0) - 96
+            total = (total + value) % arrayLen;
+        }
+        return total 
+    }
+Separate chaining 
+Together, nested in an array index 
+
+    Linear Probing 
+    With linear probing, whnen we find a collision, we serach through the array to find the 
+    next empty slot. Unlike with separate chhhaining, this allows us to store a single 
+    key-value at each index .
 
 
 
+
+
+
+
+
+
+
+    
