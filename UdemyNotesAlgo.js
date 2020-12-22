@@ -321,6 +321,44 @@ function search(arr, val) {
     return -1
 }
 
+function oddInteger(integer){
+    if (integer % 2 === 1) {
+        return true
+    } else { 
+        return false
+    }
+}
+
+
+function oddInteger(integer){
+    if (integer % 2 === 1) {
+        return true
+    } else { 
+        return false
+    }
+}
+
+oddInteger(3) //#=> true
+oddInteger(2) //#=> false
+
+function oddInteger(integer){
+    if (integer % 2 === 1) {
+        return true
+    } 
+    return false
+}
+
+oddInteger(3) //#=> true
+oddInteger(2) //#=> false
+
+function oddInteger(integer){
+    return integer % 2 === 1
+}
+
+oddInteger(3) //#=> true
+oddInteger(2) //#=> false
+
+
 Binary search
 Takes in sorted array
 
@@ -574,13 +612,8 @@ function isSubsequence(str1, str2) {
     } else {
         break
     }
-    }
-  
- 
-    
-    
+    }    
     return minLength === Infinity ? 0: minLength;
-    
 }
 
 findLongestSubstring Solution
